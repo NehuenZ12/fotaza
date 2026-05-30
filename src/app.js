@@ -3,6 +3,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const sequelize = require('./config/database');
+const Usuario = require('./models/Usuario');
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Archivos estaticos
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
@@ -20,8 +22,12 @@ app.get('/', (req, res) => {
 });
 
 sequelize.authenticate()
-    .then(() => {
+    .then(async () => {
         console.log('Base de datos conectada');
+
+        await sequelize.sync();
+
+        console.log('Tablas sincronizadas');
     })
     .catch((error) => {
         console.error('Error de conexión:', error);
