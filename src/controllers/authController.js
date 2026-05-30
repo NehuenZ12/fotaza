@@ -1,6 +1,43 @@
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcrypt');
 
+const iniciarSesion = async (req, res) => {
+
+    try {
+
+        const { email, password } = req.body;
+
+        const usuario = await Usuario.findOne({
+            where: { email }
+        });
+
+        if (!usuario) {
+            return res.send('Usuario no encontrado');
+        }
+
+        const coincidePassword = await bcrypt.compare(
+            password,
+            usuario.password
+        );
+
+        if (!coincidePassword) {
+            return res.send('Contraseña incorrecta');
+        }
+
+        req.session.usuarioId = usuario.id;
+        req.session.usuarioNombre = usuario.nombre;
+
+        res.redirect('/perfil');
+
+    } catch (error) {
+
+        console.error(error);
+        res.send('Error al iniciar sesión');
+
+    }
+
+};
+
 const mostrarLogin = (req, res) => {
     res.render('login');
 };
@@ -33,5 +70,6 @@ const registrarUsuario = async (req, res) => {
 module.exports = {
     mostrarLogin,
     mostrarRegistro,
-    registrarUsuario
+    registrarUsuario,
+    iniciarSesion
 };
