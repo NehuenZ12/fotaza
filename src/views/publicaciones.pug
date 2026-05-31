@@ -51,3 +51,34 @@ block content
 
                                 span.badge.bg-secondary.me-1
                                     | ##{etiqueta.nombre}
+
+                hr
+
+                form(
+                    action='/comentarios/crear/' + publicacion.id
+                    method='POST'
+                )
+
+                    .mb-2
+
+                        textarea.form-control(
+                            name='texto'
+                            rows='2'
+                            placeholder='Escribe un comentario'
+                            required
+                        )
+
+                    button.btn.btn-sm.btn-primary(
+                        type='submit'
+                    )
+                        | Comentar
+
+                .mt-3
+
+                    each comentario in comentarios
+
+                        if comentario.publicacionId === publicacion.id
+
+                            .border.rounded.p-2.mb-2
+
+                                p.mb-0= comentario.texto

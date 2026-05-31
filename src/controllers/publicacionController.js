@@ -88,11 +88,18 @@ const listarPublicaciones = async (req, res) => {
 
         const etiquetas = await Etiqueta.findAll();
 
+        const Comentario = require('../models/Comentario');
+
+        const comentarios = await Comentario.findAll({
+            order: [['id', 'DESC']]
+        });
+
         res.render('publicaciones', {
             publicaciones,
             imagenes,
             relaciones,
-            etiquetas
+            etiquetas,
+            comentarios
         });
 
     } catch (error) {
