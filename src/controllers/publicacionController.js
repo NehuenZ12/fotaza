@@ -1,5 +1,7 @@
 const Publicacion = require('../models/Publicacion');
 const Imagen = require('../models/Imagen');
+const Etiqueta = require('../models/Etiqueta');
+const PublicacionEtiqueta = require('../models/PublicacionEtiqueta');
 
 const mostrarFormulario = (req, res) => {
 
@@ -25,6 +27,40 @@ const crearPublicacion = async (req, res) => {
             publicacionId: publicacion.id
 
         });
+
+        if (req.body.etiquetas) {
+
+            const etiquetas = req.body.etiquetas
+                .split(',')
+                .map(e => e.trim())
+                .filter(e => e !== '');
+
+            for (const nombreEtiqueta of etiquetas) {
+
+                let etiqueta = await Etiqueta.findOne({
+                    where: {
+                        nombre: nombreEtiqueta
+                    }
+                });
+
+                if (!etiqueta) {
+
+                    etiqueta = await Etiqueta.create({
+                        nombre: nombreEtiqueta
+                    });
+
+                }
+
+                await PublicacionEtiqueta.create({
+
+                    publicacionId: publicacion.id,
+                    etiquetaId: etiqueta.id
+
+                });
+
+            }
+
+        }
 
         res.redirect('/publicaciones');
 

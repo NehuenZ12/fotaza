@@ -7,6 +7,8 @@ const sequelize = require('./config/database');
 const Usuario = require('./models/Usuario');
 const Publicacion = require('./models/Publicacion');
 const Imagen = require('./models/Imagen');
+const Etiqueta = require('./models/Etiqueta');
+const PublicacionEtiqueta = require('./models/PublicacionEtiqueta');
 const verificarSesion = require('./middlewares/authMiddleware');
 const publicacionRoutes = require('./routes/publicacionRoutes');
 
