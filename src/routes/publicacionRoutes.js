@@ -3,6 +3,7 @@ const router = express.Router();
 
 const publicacionController = require('../controllers/publicacionController');
 const verificarSesion = require('../middlewares/authMiddleware');
+const upload = require('../config/multer');
 
 router.get(
     '/',
@@ -18,6 +19,7 @@ router.get(
 router.post(
     '/crear',
     verificarSesion,
+    upload.single('imagen'),
     publicacionController.crearPublicacion
 );
 

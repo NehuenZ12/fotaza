@@ -1,4 +1,5 @@
 const Publicacion = require('../models/Publicacion');
+const Imagen = require('../models/Imagen');
 
 const mostrarFormulario = (req, res) => {
 
@@ -10,12 +11,18 @@ const crearPublicacion = async (req, res) => {
 
     try {
 
-        await Publicacion.create({
+        const publicacion = await Publicacion.create({
 
             titulo: req.body.titulo,
             descripcion: req.body.descripcion,
-
             usuarioId: req.session.usuarioId
+
+        });
+
+        await Imagen.create({
+
+            ruta: req.file.filename,
+            publicacionId: publicacion.id
 
         });
 
@@ -43,8 +50,11 @@ const listarPublicaciones = async (req, res) => {
 
         });
 
+        const imagenes = await Imagen.findAll();
+
         res.render('publicaciones', {
-            publicaciones
+            publicaciones,
+            imagenes
         });
 
     } catch (error) {
