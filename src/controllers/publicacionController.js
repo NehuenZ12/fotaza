@@ -79,18 +79,20 @@ const listarPublicaciones = async (req, res) => {
     try {
 
         const publicaciones = await Publicacion.findAll({
-
-            order: [
-                ['id', 'DESC']
-            ]
-
+            order: [['id', 'DESC']]
         });
 
         const imagenes = await Imagen.findAll();
 
+        const relaciones = await PublicacionEtiqueta.findAll();
+
+        const etiquetas = await Etiqueta.findAll();
+
         res.render('publicaciones', {
             publicaciones,
-            imagenes
+            imagenes,
+            relaciones,
+            etiquetas
         });
 
     } catch (error) {

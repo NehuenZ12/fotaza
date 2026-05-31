@@ -30,3 +30,24 @@ block content
                 h5.card-title= publicacion.titulo
 
                 p.card-text= publicacion.descripcion
+
+                -
+                    const etiquetasPublicacion = relaciones.filter(
+                        relacion => relacion.publicacionId === publicacion.id
+                    )
+
+                if etiquetasPublicacion.length > 0
+
+                    div.mt-2
+
+                        each relacion in etiquetasPublicacion
+
+                            -
+                                const etiqueta = etiquetas.find(
+                                    e => e.id === relacion.etiquetaId
+                                )
+
+                            if etiqueta
+
+                                span.badge.bg-secondary.me-1
+                                    | ##{etiqueta.nombre}
