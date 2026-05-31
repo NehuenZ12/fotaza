@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const sequelize = require('./config/database');
 const Usuario = require('./models/Usuario');
 const Publicacion = require('./models/Publicacion');
+const Imagen = require('./models/Imagen');
 const verificarSesion = require('./middlewares/authMiddleware');
 const publicacionRoutes = require('./routes/publicacionRoutes');
 

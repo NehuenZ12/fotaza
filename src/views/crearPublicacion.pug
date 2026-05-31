@@ -4,7 +4,11 @@ block content
 
     h2 Nueva publicación
 
-    form(action="/publicaciones/crear" method="POST")
+    form(
+        action="/publicaciones/crear"
+        method="POST"
+        enctype="multipart/form-data"
+    )
 
         .mb-3
             label.form-label Título
@@ -21,6 +25,16 @@ block content
             textarea.form-control(
                 name="descripcion"
                 rows="4"
+            )
+
+        .mb-3
+            label.form-label Imagen
+
+            input.form-control(
+                type="file"
+                name="imagen"
+                accept="image/*"
+                required
             )
 
         button.btn.btn-success(type="submit")
