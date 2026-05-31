@@ -1,0 +1,20 @@
+extends layouts/main
+
+block content
+
+    h2 Publicaciones
+
+    a.btn.btn-primary.mb-3(
+        href="/publicaciones/crear"
+    )
+        | Nueva publicación
+
+    each publicacion in publicaciones
+
+        .card.mb-3
+
+            .card-body
+
+                h5.card-title= publicacion.titulo
+
+                p.card-text= publicacion.descripcion

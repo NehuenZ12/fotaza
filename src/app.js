@@ -7,6 +7,7 @@ const sequelize = require('./config/database');
 const Usuario = require('./models/Usuario');
 const Publicacion = require('./models/Publicacion');
 const verificarSesion = require('./middlewares/authMiddleware');
+const publicacionRoutes = require('./routes/publicacionRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -24,6 +25,7 @@ app.use(session({
     saveUninitialized: false
 }));
 app.use('/auth', authRoutes);
+app.use('/publicaciones', publicacionRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
