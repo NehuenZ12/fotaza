@@ -37,7 +37,13 @@ const iniciarSesion = async (req, res) => {
     }
 
 };
+const cerrarSesion = (req, res) => {
 
+    req.session.destroy(() => {
+        res.redirect('/');
+    });
+
+};
 const mostrarLogin = (req, res) => {
     res.render('login');
 };
@@ -71,5 +77,6 @@ module.exports = {
     mostrarLogin,
     mostrarRegistro,
     registrarUsuario,
-    iniciarSesion
+    iniciarSesion,
+    cerrarSesion
 };

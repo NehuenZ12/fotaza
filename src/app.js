@@ -5,6 +5,7 @@ const session = require('express-session');
 const authRoutes = require('./routes/authRoutes');
 const sequelize = require('./config/database');
 const Usuario = require('./models/Usuario');
+const Publicacion = require('./models/Publicacion');
 const verificarSesion = require('./middlewares/authMiddleware');
 
 const app = express();

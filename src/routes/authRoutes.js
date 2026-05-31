@@ -11,4 +11,6 @@ router.get('/register', authController.mostrarRegistro);
 
 router.post('/register', authController.registrarUsuario);
 
+router.get('/logout', authController.cerrarSesion);
+
 module.exports = router;
