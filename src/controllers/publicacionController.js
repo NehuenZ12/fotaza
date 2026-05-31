@@ -89,6 +89,8 @@ const listarPublicaciones = async (req, res) => {
         const etiquetas = await Etiqueta.findAll();
 
         const Comentario = require('../models/Comentario');
+        const Valoracion = require('../models/Valoracion');
+        const valoraciones = await Valoracion.findAll();
 
         const comentarios = await Comentario.findAll({
             order: [['id', 'DESC']]
@@ -99,7 +101,8 @@ const listarPublicaciones = async (req, res) => {
             imagenes,
             relaciones,
             etiquetas,
-            comentarios
+            comentarios,
+            valoraciones
         });
 
     } catch (error) {
