@@ -9,6 +9,8 @@ const Publicacion = require('./models/Publicacion');
 const Imagen = require('./models/Imagen');
 const Etiqueta = require('./models/Etiqueta');
 const PublicacionEtiqueta = require('./models/PublicacionEtiqueta');
+const Comentario = require('./models/Comentario');
+const comentarioRoutes = require('./routes/comentarioRoutes');
 const verificarSesion = require('./middlewares/authMiddleware');
 const publicacionRoutes = require('./routes/publicacionRoutes');
 
@@ -29,6 +31,7 @@ app.use(session({
 }));
 app.use('/auth', authRoutes);
 app.use('/publicaciones', publicacionRoutes);
+app.use('/comentarios', comentarioRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
