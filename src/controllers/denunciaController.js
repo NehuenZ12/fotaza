@@ -1,4 +1,6 @@
 const Denuncia = require('../models/Denuncia');
+const Imagen = require('../models/Imagen');
+const Publicacion = require('../models/Publicacion');
 
 const crearDenuncia = async (req, res) => {
 
@@ -29,6 +31,43 @@ const crearDenuncia = async (req, res) => {
             imagenId: req.params.id
 
         });
+
+        const cantidadDenuncias =
+            await Denuncia.count({
+
+                where: {
+                    imagenId: req.params.id
+                }
+
+            });
+
+        if (cantidadDenuncias >= 3) {
+
+            const imagen =
+                await Imagen.findByPk(
+                    req.params.id
+                );
+
+            if (imagen) {
+
+                const publicacion =
+                    await Publicacion.findByPk(
+                        imagen.publicacionId
+                    );
+
+                if (publicacion) {
+
+                    await publicacion.update({
+
+                        enRevision: true
+
+                    });
+
+                }
+
+            }
+
+        }
 
         res.redirect('/publicaciones');
 

@@ -32,6 +32,11 @@ const Publicacion = sequelize.define('Publicacion', {
     enRevision: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
+    },
+    
+    activa: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
 }
 
 });

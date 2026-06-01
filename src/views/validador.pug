@@ -1,0 +1,21 @@
+extends layouts/main
+
+block content
+
+    h2 Publicaciones en revisión
+
+    if publicaciones.length === 0
+
+        p No hay publicaciones pendientes.
+
+    else
+
+        each publicacion in publicaciones
+
+            .card.mb-3
+
+                .card-body
+
+                    h5.card-title= publicacion.titulo
+
+                    p.card-text= publicacion.descripcion
