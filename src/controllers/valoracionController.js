@@ -1,8 +1,28 @@
 const Valoracion = require('../models/Valoracion');
+const Publicacion = require('../models/Publicacion');
 
 const valorar = async (req, res) => {
 
     try {
+
+        const publicacion = await Publicacion.findByPk(
+            req.params.id
+        );
+
+        if (!publicacion) {
+
+            return res.redirect('/publicaciones');
+
+        }
+
+        if (
+            publicacion.usuarioId ===
+            req.session.usuarioId
+        ) {
+
+            return res.redirect('/publicaciones');
+
+        }
 
         const yaExiste = await Valoracion.findOne({
 
@@ -15,9 +35,7 @@ const valorar = async (req, res) => {
 
         if (yaExiste) {
 
-            return res.send(
-                'Ya valoraste esta publicación'
-            );
+            return res.redirect('/publicaciones');
 
         }
 
