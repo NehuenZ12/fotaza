@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Publicacion = sequelize.define('Publicacion', {
+const Denuncia = sequelize.define('Denuncia', {
 
     id: {
         type: DataTypes.INTEGER,
@@ -9,14 +9,14 @@ const Publicacion = sequelize.define('Publicacion', {
         autoIncrement: true
     },
 
-    titulo: {
+    motivo: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
     descripcion: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: false
     },
 
     usuarioId: {
@@ -24,16 +24,11 @@ const Publicacion = sequelize.define('Publicacion', {
         allowNull: false
     },
 
-    comentariosAbiertos: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
-    },
-
-    enRevision: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-}
+    imagenId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 
 });
 
-module.exports = Publicacion;
+module.exports = Denuncia;
