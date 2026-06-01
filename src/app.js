@@ -15,6 +15,8 @@ const valoracionRoutes = require('./routes/valoracionRoutes');
 const comentarioRoutes = require('./routes/comentarioRoutes');
 const verificarSesion = require('./middlewares/authMiddleware');
 const publicacionRoutes = require('./routes/publicacionRoutes');
+const rankingRoutes =
+    require('./routes/rankingRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -35,6 +37,7 @@ app.use('/auth', authRoutes);
 app.use('/publicaciones', publicacionRoutes);
 app.use('/comentarios', comentarioRoutes);
 app.use('/valoraciones', valoracionRoutes);
+app.use('/ranking', rankingRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
