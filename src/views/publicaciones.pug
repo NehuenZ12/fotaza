@@ -16,15 +16,17 @@ block content
             .card-body
 
                 -
-                    const imagen = imagenes.find(
+                    const imagenesPublicacion = imagenes.filter(
                         img => img.publicacionId === publicacion.id
                     )
 
-                if imagen
+                if imagenesPublicacion.length > 0
 
-                    img.img-fluid.mb-3(
-                        src='/uploads/' + imagen.ruta
-                        alt='Imagen'
+                    each imagen in imagenesPublicacion
+
+                        img.img-fluid.mb-3(
+                            src='/uploads/' + imagen.ruta
+                            alt='Imagen'
                     )
 
                 h5.card-title= publicacion.titulo
