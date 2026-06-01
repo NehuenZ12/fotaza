@@ -1,0 +1,27 @@
+extends layouts/main
+
+block content
+
+    h2 Resultado de búsqueda
+
+    p
+        strong Etiqueta:
+        |  #{etiquetaBuscada}
+
+    hr
+
+    if publicaciones.length === 0
+
+        p No se encontraron publicaciones.
+
+    else
+
+        each publicacion in publicaciones
+
+            .card.mb-3
+
+                .card-body
+
+                    h5.card-title= publicacion.titulo
+
+                    p.card-text= publicacion.descripcion

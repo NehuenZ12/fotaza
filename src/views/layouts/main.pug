@@ -13,8 +13,28 @@ html(lang="es")
     body
 
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+
             .container
-                a.navbar-brand(href="/") Fotaza
+
+                a.navbar-brand(href="/")
+                    | Fotaza
+
+                form.d-flex(
+                    action="/buscar"
+                    method="GET"
+                )
+
+                    input.form-control.me-2(
+                        type="text"
+                        name="etiqueta"
+                        placeholder="Buscar etiqueta..."
+                    )
+
+                    button.btn.btn-outline-light(
+                        type="submit"
+                    )
+                        | Buscar
 
         .container.mt-4
+
             block content
