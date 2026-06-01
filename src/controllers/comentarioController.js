@@ -1,4 +1,7 @@
 const Comentario = require('../models/Comentario');
+const Publicacion = require('../models/Publicacion');
+const Usuario = require('../models/Usuario');
+const Notificacion = require('../models/Notificacion');
 
 const crearComentario = async (req, res) => {
 
@@ -11,6 +14,34 @@ const crearComentario = async (req, res) => {
             publicacionId: req.params.id
 
         });
+
+        const publicacion =
+            await Publicacion.findByPk(
+                req.params.id
+            );
+
+        if (
+            publicacion.usuarioId !==
+            req.session.usuarioId
+        ) {
+
+            const usuario =
+                await Usuario.findByPk(
+                    req.session.usuarioId
+                );
+
+            await Notificacion.create({
+
+                mensaje:
+                    usuario.nombre +
+                    ' comentó tu publicación',
+
+                usuarioId:
+                    publicacion.usuarioId
+
+            });
+
+        }
 
         res.redirect('/publicaciones');
 

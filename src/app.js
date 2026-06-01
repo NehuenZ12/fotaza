@@ -20,6 +20,8 @@ const buscadorRoutes = require('./routes/buscadorRoutes');
 const Seguimiento = require('./models/Seguimiento');
 const seguimientoRoutes = require('./routes/seguimientoRoutes');    
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const Notificacion = require('./models/Notificacion');
+const notificacionRoutes = require('./routes/notificacionRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -44,6 +46,7 @@ app.use('/ranking', rankingRoutes);
 app.use('/buscar', buscadorRoutes);
 app.use('/seguir', seguimientoRoutes);
 app.use('/usuarios', usuarioRoutes);
+app.use('/notificaciones', notificacionRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
