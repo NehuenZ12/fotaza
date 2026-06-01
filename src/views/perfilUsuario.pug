@@ -1,0 +1,37 @@
+extends layouts/main
+
+block content
+
+    h2= usuario.nombre
+
+    p
+        strong Email:
+        |  #{usuario.email}
+
+    hr
+
+    p
+        strong Seguidores:
+        |  #{seguidores}
+
+    p
+        strong Siguiendo:
+        |  #{seguidos}
+
+    p
+        strong Publicaciones:
+        |  #{publicaciones.length}
+
+    hr
+
+    h4 Publicaciones
+
+    each publicacion in publicaciones
+
+        .card.mb-3
+
+            .card-body
+
+                h5.card-title= publicacion.titulo
+
+                p.card-text= publicacion.descripcion

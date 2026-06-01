@@ -10,4 +10,10 @@ router.get(
     usuarioController.listarUsuarios
 );
 
+router.get(
+    '/:id',
+    verificarSesion,
+    usuarioController.verPerfil
+);
+
 module.exports = router;

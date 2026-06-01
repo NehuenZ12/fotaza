@@ -16,6 +16,11 @@ block content
 
                     p.card-text= usuario.email
 
+                    a.btn.btn-primary.me-2(
+                        href='/usuarios/' + usuario.id
+                    )
+                        | Ver perfil
+
                     a.btn.btn-success(
                         href='/seguir/' + usuario.id
                     )
