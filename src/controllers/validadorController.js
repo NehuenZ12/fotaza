@@ -102,6 +102,37 @@ const darDeBaja = async (req, res) => {
 
         });
 
+        const cantidadBajas =
+            await Publicacion.count({
+
+                where: {
+                    usuarioId:
+                        publicacion.usuarioId,
+
+                    activa: false
+                }
+
+            });
+
+        if (cantidadBajas >= 3) {
+
+            const usuario =
+                await Usuario.findByPk(
+                    publicacion.usuarioId
+                );
+
+            if (usuario) {
+
+                await usuario.update({
+
+                    activo: false
+
+                });
+
+            }
+
+        }
+
         res.redirect('/validador');
 
     } catch (error) {
