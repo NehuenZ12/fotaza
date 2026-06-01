@@ -130,7 +130,8 @@ for (const publicacion of publicaciones) {
             etiquetas,
             comentarios,
             valoraciones,
-            estadisticasValoraciones
+            estadisticasValoraciones,
+            usuarioId: req.session.usuarioId
         });
 
     } catch (error) {

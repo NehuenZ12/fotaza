@@ -22,6 +22,11 @@ const Publicacion = sequelize.define('Publicacion', {
     usuarioId: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+
+    comentariosAbiertos: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 
 });

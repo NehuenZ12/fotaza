@@ -51,6 +51,7 @@ block content
 
                                 span.badge.bg-secondary.me-1
                                     | ##{etiqueta.nombre}
+
                 -
                     const estadisticas =
                         estadisticasValoraciones[publicacion.id]
@@ -67,24 +68,47 @@ block content
 
                 hr
 
-                form(
-                    action='/comentarios/crear/' + publicacion.id
-                    method='POST'
-                )
+                if publicacion.usuarioId === usuarioId
 
-                    .mb-2
+                    if publicacion.comentariosAbiertos
 
-                        textarea.form-control(
-                            name='texto'
-                            rows='2'
-                            placeholder='Escribe un comentario'
-                            required
+                        a.btn.btn-danger.btn-sm.mb-3(
+                            href='/publicaciones/cerrar-comentarios/' + publicacion.id
                         )
+                            | Cerrar comentarios
 
-                    button.btn.btn-sm.btn-primary(
-                        type='submit'
+                    else
+
+                        a.btn.btn-success.btn-sm.mb-3(
+                            href='/publicaciones/abrir-comentarios/' + publicacion.id
+                        )
+                            | Abrir comentarios
+
+                if publicacion.comentariosAbiertos
+
+                    form(
+                        action='/comentarios/crear/' + publicacion.id
+                        method='POST'
                     )
-                        | Comentar
+
+                        .mb-2
+
+                            textarea.form-control(
+                                name='texto'
+                                rows='2'
+                                placeholder='Escribe un comentario'
+                                required
+                            )
+
+                        button.btn.btn-sm.btn-primary(
+                            type='submit'
+                        )
+                            | Comentar
+
+                else
+
+                    p.text-danger
+                        strong Comentarios cerrados por el autor
 
                 .mt-3
 
@@ -96,7 +120,7 @@ block content
 
                                 p.mb-0= comentario.texto
 
-                                                hr
+                hr
 
                 form(
                     action='/valoraciones/' + publicacion.id

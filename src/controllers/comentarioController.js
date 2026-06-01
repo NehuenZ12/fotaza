@@ -7,6 +7,29 @@ const crearComentario = async (req, res) => {
 
     try {
 
+        const publicacion =
+            await Publicacion.findByPk(
+                req.params.id
+            );
+
+        if (!publicacion) {
+
+            return res.redirect(
+                '/publicaciones'
+            );
+
+        }
+
+        if (
+            !publicacion.comentariosAbiertos
+        ) {
+
+            return res.redirect(
+                '/publicaciones'
+            );
+
+        }
+
         await Comentario.create({
 
             texto: req.body.texto,
@@ -14,11 +37,6 @@ const crearComentario = async (req, res) => {
             publicacionId: req.params.id
 
         });
-
-        const publicacion =
-            await Publicacion.findByPk(
-                req.params.id
-            );
 
         if (
             publicacion.usuarioId !==
