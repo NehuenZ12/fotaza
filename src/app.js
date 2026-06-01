@@ -25,6 +25,8 @@ const notificacionRoutes = require('./routes/notificacionRoutes');
 const Denuncia = require('./models/Denuncia');
 const denunciaRoutes = require('./routes/denunciaRoutes');
 const validadorRoutes = require('./routes/validadorRoutes');
+const DenunciaComentario = require('./models/DenunciaComentario');
+const denunciaComentarioRoutes = require('./routes/denunciaComentarioRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -51,8 +53,8 @@ app.use('/seguir', seguimientoRoutes);
 app.use('/usuarios', usuarioRoutes);
 app.use('/notificaciones', notificacionRoutes);
 app.use('/denuncias', denunciaRoutes);
-app.use('/validador', validadorRoutes
-);
+app.use('/denuncias-comentarios', denunciaComentarioRoutes);
+app.use('/validador', validadorRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');

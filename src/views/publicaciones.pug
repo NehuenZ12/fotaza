@@ -161,7 +161,48 @@ block content
 
                             .border.rounded.p-2.mb-2
 
-                                p.mb-0= comentario.texto
+                                p.mb-2= comentario.texto
+
+                                form(
+                                    action='/denuncias-comentarios/' + comentario.id
+                                    method='POST'
+                                )
+
+                                    .mb-2
+
+                                        select.form-select(
+                                            name='motivo'
+                                            required
+                                        )
+
+                                            option(value='')
+                                                | Seleccione un motivo
+
+                                            option(value='Insulto')
+                                                | Insulto
+
+                                            option(value='Spam')
+                                                | Spam
+
+                                            option(value='Contenido ofensivo')
+                                                | Contenido ofensivo
+
+                                            option(value='Acoso')
+                                                | Acoso
+
+                                    .mb-2
+
+                                        textarea.form-control(
+                                            name='descripcion'
+                                            rows='2'
+                                            placeholder='Describa el motivo de la denuncia'
+                                            required
+                                        )
+
+                                    button.btn.btn-danger.btn-sm(
+                                        type='submit'
+                                    )
+                                        | Denunciar comentario
 
                 hr
 
