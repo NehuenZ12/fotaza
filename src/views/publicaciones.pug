@@ -51,6 +51,19 @@ block content
 
                                 span.badge.bg-secondary.me-1
                                     | ##{etiqueta.nombre}
+                -
+                    const estadisticas =
+                        estadisticasValoraciones[publicacion.id]
+
+                .mt-2.mb-2
+
+                    p.mb-1
+                        strong Promedio:
+                        |  #{estadisticas.promedio}
+
+                    p.mb-1
+                        strong Valoraciones:
+                        |  #{estadisticas.cantidad}
 
                 hr
 

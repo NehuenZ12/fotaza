@@ -91,6 +91,33 @@ const listarPublicaciones = async (req, res) => {
         const Comentario = require('../models/Comentario');
         const Valoracion = require('../models/Valoracion');
         const valoraciones = await Valoracion.findAll();
+        const estadisticasValoraciones = {};
+
+for (const publicacion of publicaciones) {
+
+    const votos = valoraciones.filter(
+        valoracion =>
+            valoracion.publicacionId === publicacion.id
+    );
+
+    const cantidad = votos.length;
+
+    const suma = votos.reduce(
+        (acum, voto) => acum + voto.puntaje,
+        0
+    );
+
+    const promedio =
+        cantidad > 0
+            ? (suma / cantidad).toFixed(1)
+            : 0;
+
+    estadisticasValoraciones[publicacion.id] = {
+        promedio,
+        cantidad
+    };
+
+}
 
         const comentarios = await Comentario.findAll({
             order: [['id', 'DESC']]
@@ -102,7 +129,8 @@ const listarPublicaciones = async (req, res) => {
             relaciones,
             etiquetas,
             comentarios,
-            valoraciones
+            valoraciones,
+            estadisticasValoraciones
         });
 
     } catch (error) {
