@@ -21,12 +21,16 @@ const crearPublicacion = async (req, res) => {
 
         });
 
+    for (const archivo of req.files) {
+
         await Imagen.create({
 
-            ruta: req.file.filename,
-            publicacionId: publicacion.id
+        ruta: archivo.filename,
+        publicacionId: publicacion.id
 
-        });
+    });
+
+}
 
         if (req.body.etiquetas) {
 

@@ -21,7 +21,7 @@ router.get(
 router.post(
     '/crear',
     verificarSesion,
-    upload.single('imagen'),
+    upload.array('imagenes', 10),
     publicacionController.crearPublicacion
 );
 
