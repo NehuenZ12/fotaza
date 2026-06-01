@@ -1,4 +1,7 @@
 const Publicacion = require('../models/Publicacion');
+const Denuncia = require('../models/Denuncia');
+const Imagen = require('../models/Imagen');
+const Usuario = require('../models/Usuario');
 
 const listarRevision = async (req, res) => {
 
@@ -32,6 +35,89 @@ const listarRevision = async (req, res) => {
 
 };
 
+const desestimar = async (req, res) => {
+
+    try {
+
+        const publicacion =
+            await Publicacion.findByPk(
+                req.params.id
+            );
+
+        const imagenes =
+            await Imagen.findAll({
+
+                where: {
+                    publicacionId:
+                        publicacion.id
+                }
+
+            });
+
+        for (const imagen of imagenes) {
+
+            await Denuncia.destroy({
+
+                where: {
+                    imagenId: imagen.id
+                }
+
+            });
+
+        }
+
+        await publicacion.update({
+
+            enRevision: false
+
+        });
+
+        res.redirect('/validador');
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al desestimar'
+        );
+
+    }
+
+};
+
+const darDeBaja = async (req, res) => {
+
+    try {
+
+        const publicacion =
+            await Publicacion.findByPk(
+                req.params.id
+            );
+
+        await publicacion.update({
+
+            activa: false,
+            enRevision: false
+
+        });
+
+        res.redirect('/validador');
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al dar de baja'
+        );
+
+    }
+
+};
+
 module.exports = {
-    listarRevision
+    listarRevision,
+    desestimar,
+    darDeBaja
 };

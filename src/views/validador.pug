@@ -19,3 +19,13 @@ block content
                     h5.card-title= publicacion.titulo
 
                     p.card-text= publicacion.descripcion
+
+                    a.btn.btn-success.me-2(
+                        href='/validador/desestimar/' + publicacion.id
+                    )
+                        | Desestimar denuncias
+
+                    a.btn.btn-danger(
+                        href='/validador/baja/' + publicacion.id
+                    )
+                        | Dar de baja publicación
