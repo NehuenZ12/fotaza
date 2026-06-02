@@ -24,10 +24,29 @@ block content
 
                     each imagen in imagenesPublicacion
 
-                        img.img-fluid.mb-3(
-                            src='/uploads/' + imagen.ruta
-                            alt='Imagen'
-                        )
+                        .position-relative.d-inline-block.mb-3
+
+                            img.img-fluid(
+                                src='/uploads/' + imagen.ruta
+                                alt='Imagen'
+                            )
+
+                            if imagen.licencia === 'copyright' && imagen.marcaagua
+
+                                .position-absolute.top-50.start-50.translate-middle.text-white.fw-bold.opacity-50(
+                                    style='font-size: 2rem; pointer-events:none;'
+                                )
+                                    = imagen.marcaagua
+
+                        p.mb-1
+                            strong Licencia:
+                            |  #{imagen.licencia}
+
+                        if imagen.marcaagua
+
+                            p.mb-2
+                                strong Marca de agua:
+                                |  #{imagen.marcaagua}
 
                         form(
                             action='/denuncias/' + imagen.id
@@ -71,6 +90,7 @@ block content
                                 | Denunciar imagen
 
                 h5.card-title= publicacion.titulo
+                    
 
                 p.card-text= publicacion.descripcion
 
