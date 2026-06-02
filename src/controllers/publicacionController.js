@@ -26,7 +26,9 @@ const crearPublicacion = async (req, res) => {
         await Imagen.create({
 
         ruta: archivo.filename,
-        publicacionId: publicacion.id
+        publicacionId: publicacion.id,
+        licencia: req.body.licencia,
+        marcaagua: req.body.marcaAgua
 
     });
 

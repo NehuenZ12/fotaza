@@ -17,6 +17,17 @@ const Imagen = sequelize.define('Imagen', {
     publicacionId: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+
+    licencia: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'libre'
+    },
+
+    marcaagua: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 
 });

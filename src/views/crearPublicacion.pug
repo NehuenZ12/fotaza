@@ -37,6 +37,31 @@ block content
             )
 
         .mb-3
+
+            label.form-label Licencia
+
+            select.form-select(
+                name="licencia"
+                required
+            )
+
+                option(value="libre")
+                    | Libre de copyright
+
+                option(value="copyright")
+                    | Copyright
+
+        .mb-3
+
+            label.form-label Texto de marca de agua
+
+            input.form-control(
+                type="text"
+                name="marcaAgua"
+                placeholder="Ej: Nehuen 2026"
+            )
+
+        .mb-3
             label.form-label Imágenes
 
             input.form-control(
