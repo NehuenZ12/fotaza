@@ -21,7 +21,24 @@ block content
                     )
                         | Ver perfil
 
-                    a.btn.btn-success(
+                    a.btn.btn-success.me-2(
                         href='/seguir/' + usuario.id
                     )
                         | Seguir
+
+                    form(
+                        action='/mensajes/enviar/' + usuario.id
+                        method='POST'
+                        style='display:inline'
+                    )
+
+                        input(
+                            type='hidden'
+                            name='texto'
+                            value='Hola, me gustaría contactarme contigo.'
+                        )
+
+                        button.btn.btn-warning(
+                            type='submit'
+                        )
+                            | Enviar mensaje

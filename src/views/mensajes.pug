@@ -1,0 +1,24 @@
+extends layouts/main
+
+block content
+
+    h2 Mensajes recibidos
+
+    each mensaje in mensajes
+
+        -
+            const remitente =
+                usuarios.find(
+                    u => u.id === mensaje.remitenteId
+                )
+
+        .card.mb-3
+
+            .card-body
+
+                p
+                    strong De:
+
+                    |  #{remitente ? remitente.nombre : 'Usuario'}
+
+                p= mensaje.texto
