@@ -1,5 +1,6 @@
 const Mensaje = require('../models/Mensaje');
 const Usuario = require('../models/Usuario');
+const { Op } = require('sequelize');
 
 const listarMensajes = async (req, res) => {
 
@@ -8,12 +9,25 @@ const listarMensajes = async (req, res) => {
         const mensajes = await Mensaje.findAll({
 
             where: {
-                destinatarioId:
+
+                [Op.or]: [
+
+            {
+                remitenteId:
                     req.session.usuarioId
             },
 
+            {
+                destinatarioId:
+                    req.session.usuarioId
+            }
+
+        ]
+
+    }, 
+           
             order: [
-                ['id', 'DESC']
+                ['id', 'ASC']
             ]
 
         });
@@ -25,7 +39,11 @@ const listarMensajes = async (req, res) => {
             'mensajes',
             {
                 mensajes,
-                usuarios
+                usuarios,
+                usuariosId:
+                    Number(                 
+                        req.session.usuarioId
+                    )  
             }
         );
 
