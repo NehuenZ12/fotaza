@@ -1,0 +1,39 @@
+extends layouts/main
+
+block content
+
+    h2 Denuncias de comentarios
+
+    each denuncia in denuncias
+
+        -
+            const comentario =
+                comentarios.find(
+                    c => c.id === denuncia.comentarioId
+                )
+
+        if comentario
+
+            .card.mb-3
+
+                .card-body
+
+                    p
+                        strong Comentario:
+
+                    p= comentario.texto
+
+                    p
+                        strong Motivo:
+
+                    p= denuncia.motivo
+
+                    p
+                        strong Descripción:
+
+                    p= denuncia.descripcion
+
+                    a.btn.btn-danger(
+                        href='/denuncias-comentarios-admin/eliminar/' + comentario.id
+                    )
+                        | Eliminar comentario
