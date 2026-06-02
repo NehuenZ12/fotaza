@@ -125,12 +125,45 @@ for (const publicacion of publicaciones) {
 
 }
 
+        const publicacionesOrdenadas =
+    [...publicaciones].sort((a, b) => {
+
+        const estadisticaA =
+            estadisticasValoraciones[a.id];
+
+        const estadisticaB =
+            estadisticasValoraciones[b.id];
+
+        const destacadaA =
+            estadisticaA.promedio >= 4;
+
+        const destacadaB =
+            estadisticaB.promedio >= 4;
+
+        if (
+            destacadaA &&
+            !destacadaB
+        ) {
+            return -1;
+        }
+
+        if (
+            !destacadaA &&
+            destacadaB
+        ) {
+            return 1;
+        }
+
+        return b.id - a.id;
+
+    });
+
         const comentarios = await Comentario.findAll({
             order: [['id', 'DESC']]
         });
 
         res.render('publicaciones', {
-            publicaciones,
+            publicaciones: publicacionesOrdenadas,
             imagenes,
             relaciones,
             etiquetas,
