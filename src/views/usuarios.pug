@@ -26,6 +26,11 @@ block content
                     )
                         | Seguir
 
+                    a.btn.btn-secondary.me-2(
+                        href='/seguir/dejar/' + usuario.id
+                    )
+                        | Dejar de seguir
+
                     form(
                         action='/mensajes/enviar/' + usuario.id
                         method='POST'

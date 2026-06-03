@@ -11,4 +11,10 @@ router.get(
     seguimientoController.seguir
 );
 
+router.get(
+    '/dejar/:id',
+    verificarSesion,
+    seguimientoController.dejarDeSeguir
+);
+
 module.exports = router;
