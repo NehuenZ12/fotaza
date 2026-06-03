@@ -39,6 +39,41 @@ const listarNotificaciones =
 
     };
 
+const marcarLeida = async (req, res) => {
+
+    try {
+
+        await Notificacion.update(
+
+            {
+                leida: true
+            },
+
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+
+        );
+
+        res.redirect(
+            '/notificaciones'
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al marcar notificación'
+        );
+
+    }
+
+};
+
 module.exports = {
-    listarNotificaciones
+    listarNotificaciones,
+    marcarLeida
 };

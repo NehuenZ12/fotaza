@@ -14,4 +14,11 @@ router.get(
         .listarNotificaciones
 );
 
+router.get(
+    '/leida/:id',
+    verificarSesion,
+    notificacionController
+        .marcarLeida
+);
+
 module.exports = router;

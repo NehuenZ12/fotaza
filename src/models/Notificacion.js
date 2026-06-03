@@ -9,6 +9,11 @@ const Notificacion = sequelize.define('Notificacion', {
         autoIncrement: true
     },
 
+    leida: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+    },  
+
     mensaje: {
         type: DataTypes.STRING,
         allowNull: false

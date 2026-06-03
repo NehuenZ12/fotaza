@@ -20,3 +20,17 @@ block content
 
                     small.text-muted
                         = notificacion.createdAt.toLocaleString()
+
+                    br
+
+                    if !notificacion.leida
+
+                        a.btn.btn-sm.btn-success.mt-2(
+                            href='/notificaciones/leida/' + notificacion.id
+                        )
+                            | Marcar como leída
+
+                    else
+
+                        span.badge.bg-secondary.mt-2
+                            | Leída
