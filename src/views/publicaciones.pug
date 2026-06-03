@@ -4,6 +4,37 @@ block content
 
     h2 Publicaciones
 
+    form.mb-3(
+    action="/buscar"
+    method="GET"
+)
+
+    .row
+
+        .col-md-4
+
+            input.form-control(
+                type="text"
+                name="etiqueta"
+                placeholder="Buscar etiqueta..."
+            )
+
+        .col-md-4
+
+            input.form-control(
+                type="text"
+                name="texto"
+                placeholder="Titulo o descripcion..."
+            )
+
+        .col-md-2
+
+            button.btn.btn-primary(
+                type="submit"
+            )
+                | Buscar
+                
+
     a.btn.btn-primary.mb-3(
         href="/publicaciones/crear"
     )
