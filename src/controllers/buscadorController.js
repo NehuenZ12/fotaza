@@ -7,34 +7,54 @@ const buscar = async (req, res) => {
 
     try {
 
-        const texto = req.query.etiqueta;
+        const etiquetaBuscada =
+        req.query.etiqueta || '';
 
-        const etiqueta = await Etiqueta.findOne({
+        const textoBuscado =
+        req.query.texto || '';
 
-            where: {
-                nombre: texto
-            }
+        let etiqueta = null;
 
-        });
+        if (etiquetaBuscada !== '') {
 
-        if (!etiqueta) {
-
-            return res.render('busqueda', {
-                publicaciones: [],
-                etiquetaBuscada: texto
-            });
-
-        }
-
-        const relaciones =
-            await PublicacionEtiqueta.findAll({
+            etiqueta = await Etiqueta.findOne({
 
                 where: {
-                    etiquetaId: etiqueta.id
+                    nombre: etiquetaBuscada
                 }
 
             });
 
+        }
+
+        if (
+            etiquetaBuscada !== '' &&
+            !etiqueta
+        ) {
+            return res.render(
+                'busqueda', 
+                {
+                    publicaciones: [],
+                    imagenes: [],
+                    etiquetaBuscada,
+                    textoBuscado
+                }
+            );
+        }
+
+        let relaciones = [];
+
+        if (etiqueta) {
+
+            relaciones =
+                await PublicacionEtiqueta.findAll({
+
+                    where: {
+                        etiquetaId: etiqueta.id
+                    }
+                });
+
+        }
         const ids = relaciones.map(
             relacion => relacion.publicacionId
         );
@@ -42,11 +62,48 @@ const buscar = async (req, res) => {
         const publicaciones =
             await Publicacion.findAll();
 
-        const resultado =
-            publicaciones.filter(
-                publicacion =>
-                    ids.includes(publicacion.id)
-            );
+        let resultado = publicaciones;
+
+        if (etiqueta) {
+
+            resultado =
+                resultado.filter(
+                    publicacion =>
+                        ids.includes(
+                            publicacion.id
+                        )
+                );
+        }
+
+        if (textoBuscado !== '') {
+
+            resultado =
+                resultado.filter(
+                    publicacion =>
+                        
+                        publicacion.titulo
+                            .toLowerCase()
+                            .includes(
+                                textoBuscado
+                                    .toLowerCase()
+                            ) 
+                        ||
+
+                        (
+                            publicacion.descripcion 
+                            &&
+                            publicacion.descripcion
+                                .toLowerCase()
+                                .includes(
+                                    textoBuscado
+                                        .toLowerCase()
+                                )
+                        )
+                );
+
+        }
+                
+
         const imagenes =
             await Imagen.findAll();
 
@@ -54,7 +111,8 @@ const buscar = async (req, res) => {
 
             publicaciones: resultado,
             imagenes,
-            etiquetaBuscada: texto
+            etiquetaBuscada,
+            textoBuscado
 
         });
 
