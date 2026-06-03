@@ -1,6 +1,7 @@
 const Etiqueta = require('../models/Etiqueta');
 const PublicacionEtiqueta = require('../models/PublicacionEtiqueta');
 const Publicacion = require('../models/Publicacion');
+const Imagen = require('../models/Imagen');
 
 const buscar = async (req, res) => {
 
@@ -46,10 +47,13 @@ const buscar = async (req, res) => {
                 publicacion =>
                     ids.includes(publicacion.id)
             );
+        const imagenes =
+            await Imagen.findAll();
 
         res.render('busqueda', {
 
             publicaciones: resultado,
+            imagenes,
             etiquetaBuscada: texto
 
         });
