@@ -19,6 +19,43 @@ html(lang="es")
                 a.navbar-brand(href="/")
                     | Fotaza
 
+                .navbar-nav.me-auto
+
+                    a.nav-link.text-white(
+                        href="/publicaciones"
+                    )
+                        | Publicaciones
+
+                    a.nav-link.text-white(
+                        href="/usuarios"
+                    )
+                        | Usuarios
+
+                    a.nav-link.text-white(
+                        href="/seguir/publicaciones"
+                    )
+                        | Seguidos
+
+                    a.nav-link.text-white(
+                        href="/mensajes"
+                    )
+                        | Mensajes
+
+                    a.nav-link.text-white(
+                        href="/notificaciones"
+                    )
+                        | Notificaciones
+
+                    a.nav-link.text-white(
+                        href="/perfil"
+                    )
+                        | Perfil
+
+                    a.nav-link.text-danger(
+                        href="/auth/logout"
+                    )
+                        | Salir
+
                 form.d-flex(
                     action="/buscar"
                     method="GET"
