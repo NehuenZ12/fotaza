@@ -5,35 +5,34 @@ block content
     h2 Publicaciones
 
     form.mb-3(
-    action="/buscar"
-    method="GET"
-)
+        action="/buscar"
+        method="GET"
+    )
 
-    .row
+        .row
 
-        .col-md-4
+            .col-md-4
 
-            input.form-control(
-                type="text"
-                name="etiqueta"
-                placeholder="Buscar etiqueta..."
-            )
+                input.form-control(
+                    type="text"
+                    name="etiqueta"
+                    placeholder="Buscar etiqueta..."
+                )
 
-        .col-md-4
+            .col-md-4
 
-            input.form-control(
-                type="text"
-                name="texto"
-                placeholder="Titulo o descripcion..."
-            )
+                input.form-control(
+                    type="text"
+                    name="texto"
+                    placeholder="Titulo o descripcion..."
+                )
 
-        .col-md-2
+            .col-md-2
 
-            button.btn.btn-primary(
-                type="submit"
-            )
-                | Buscar
-                
+                button.btn.btn-primary(
+                    type="submit"
+                )
+                    | Buscar
 
     a.btn.btn-primary.mb-3(
         href="/publicaciones/crear"
