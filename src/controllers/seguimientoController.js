@@ -53,6 +53,32 @@ const seguir = async (req, res) => {
 
 };
 
+const dejarDeSeguir = async (req, res) => {
+
+    try {
+
+        await Seguimiento.destroy({
+
+            where: {
+                seguidorId: req.session.usuarioId,
+                seguidoId: req.params.id
+            }
+
+        });
+
+        res.redirect('/usuarios');
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send('Error al dejar de seguir');
+
+    }
+
+};
+
 module.exports = {
-    seguir
+    seguir,
+    dejarDeSeguir
 };
