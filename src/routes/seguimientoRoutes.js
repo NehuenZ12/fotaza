@@ -6,6 +6,12 @@ const seguimientoController =
     require('../controllers/seguimientoController');
 
 router.get(
+    '/publicaciones',
+    verificarSesion,
+    seguimientoController.publicacionesSeguidos
+);
+
+router.get(
     '/:id',
     verificarSesion,
     seguimientoController.seguir

@@ -1,6 +1,8 @@
 const Seguimiento = require('../models/Seguimiento');
 const Notificacion = require('../models/Notificacion');
 const Usuario = require('../models/Usuario');
+const Publicacion = require('../models/Publicacion');
+const Imagen = require('../models/Imagen');
 
 const seguir = async (req, res) => {
 
@@ -78,7 +80,63 @@ const dejarDeSeguir = async (req, res) => {
 
 };
 
+const publicacionesSeguidos = async (req, res) => {
+
+    try {
+
+        const seguimientos =
+            await Seguimiento.findAll({
+
+                where: {
+                    seguidorId:
+                        req.session.usuarioId
+                }
+
+            });
+
+        const idsSeguidos =
+            seguimientos.map(
+                seguimiento =>
+                    seguimiento.seguidoId
+            );
+
+        const publicaciones =
+            await Publicacion.findAll();
+
+        const publicacionesFiltradas =
+            publicaciones.filter(
+                publicacion =>
+                    idsSeguidos.includes(
+                        publicacion.usuarioId
+                    )
+            );
+
+        const imagenes =
+            await Imagen.findAll();
+
+        res.render(
+            'publicacionesSeguidos',
+            {
+                publicaciones:
+                    publicacionesFiltradas,
+                imagenes
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al cargar publicaciones seguidas'
+        );
+
+    }
+
+};
+
 module.exports = {
     seguir,
-    dejarDeSeguir
+    dejarDeSeguir,
+    publicacionesSeguidos
 };
