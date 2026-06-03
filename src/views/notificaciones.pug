@@ -16,4 +16,7 @@ block content
 
                 .card-body
 
-                    p.mb-0= notificacion.mensaje
+                    p.mb-1= notificacion.mensaje
+
+                    small.text-muted
+                        = notificacion.createdAt.toLocaleString()
