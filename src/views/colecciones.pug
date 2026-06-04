@@ -1,0 +1,34 @@
+extends layouts/main
+
+block content
+
+    h2 Mis colecciones
+
+    form(
+        action='/colecciones/crear'
+        method='POST'
+    )
+
+        .mb-3
+
+            input.form-control(
+                type='text'
+                name='nombre'
+                placeholder='Nombre de la colección'
+                required
+            )
+
+        button.btn.btn-primary(
+            type='submit'
+        )
+            | Crear colección
+
+    hr
+
+    each coleccion in colecciones
+
+        .card.mb-2
+
+            .card-body
+
+                h5.mb-0= coleccion.nombre

@@ -31,6 +31,7 @@ const denunciaComentarioAdminRoutes = require('./routes/denunciaComentarioAdminR
 const interesRoutes = require('./routes/interesRoutes');
 const Mensaje = require('./models/Mensaje');
 const mensajeRoutes = require('./routes/mensajeRoutes');
+const coleccionRoutes = require('./routes/coleccionRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -62,6 +63,7 @@ app.use('/validador', validadorRoutes);
 app.use('/denuncias-comentarios-admin', denunciaComentarioAdminRoutes);
 app.use('/intereses', interesRoutes);
 app.use('/mensajes', mensajeRoutes);
+app.use('/colecciones', coleccionRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
