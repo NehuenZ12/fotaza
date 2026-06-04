@@ -1,6 +1,7 @@
 const Coleccion = require('../models/Coleccion');
 const ColeccionPublicacion = require('../models/ColeccionPublicacion');
 const Publicacion = require('../models/Publicacion');
+const Imagen = require('../models/Imagen');
 
 const listarColecciones =
     async (req, res) => {
@@ -157,13 +158,17 @@ const verColeccion =
                             publicacion.id
                         )
                 );
+            
+            const imagenes =
+                await Imagen.findAll();
 
             res.render(
                 'coleccionDetalle',
                 {
                     coleccion,
                     publicaciones:
-                        resultado
+                        resultado,
+                    imagenes
                 }
             );
 
