@@ -31,6 +31,19 @@ block content
         .card.mb-3
 
             .card-body
+                -
+                    const imagen = 
+                        imagenes.find(
+                            img => 
+                                img.publicacionId === 
+                                publicacion.id
+                        )
+                if imagen
+
+                    img.img-fluid.mb-3(
+                        src='/uploads/' + imagen.ruta
+                        alt='Imagen'
+                    )      
 
                 h5.card-title= publicacion.titulo
 

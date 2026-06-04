@@ -1,6 +1,7 @@
 const Usuario = require('../models/Usuario');
 const Seguimiento = require('../models/Seguimiento');
 const Publicacion = require('../models/Publicacion');
+const Imagen = require('../models/Imagen');
 
 const listarUsuarios = async (req, res) => {
 
@@ -58,12 +59,16 @@ const verPerfil = async (req, res) => {
 
             });
 
+        const imagenes =
+            await Imagen.findAll();
+
         res.render('perfilUsuario', {
 
             usuario,
             seguidores,
             seguidos,
-            publicaciones
+            publicaciones,
+            imagenes
 
         });
 
