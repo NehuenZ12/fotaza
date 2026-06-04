@@ -28,4 +28,11 @@ router.post(
         .guardarPublicacion
 );
 
+router.get(
+    '/:id',
+    verificarSesion,
+    coleccionController
+        .verColeccion
+);
+
 module.exports = router;

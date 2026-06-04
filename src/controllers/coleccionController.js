@@ -1,5 +1,6 @@
 const Coleccion = require('../models/Coleccion');
 const ColeccionPublicacion = require('../models/ColeccionPublicacion');
+const Publicacion = require('../models/Publicacion');
 
 const listarColecciones =
     async (req, res) => {
@@ -120,10 +121,69 @@ const guardarPublicacion =
 
     };
 
+const verColeccion =
+    async (req, res) => {
+
+        try {
+
+            const coleccion =
+                await Coleccion.findByPk(
+                    req.params.id
+                );
+
+            const relaciones =
+                await ColeccionPublicacion.findAll({
+
+                    where: {
+                        coleccionId:
+                            req.params.id
+                    }
+
+                });
+
+            const ids =
+                relaciones.map(
+                    relacion =>
+                        relacion.publicacionId
+                );
+
+            const publicaciones =
+                await Publicacion.findAll();
+
+            const resultado =
+                publicaciones.filter(
+                    publicacion =>
+                        ids.includes(
+                            publicacion.id
+                        )
+                );
+
+            res.render(
+                'coleccionDetalle',
+                {
+                    coleccion,
+                    publicaciones:
+                        resultado
+                }
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.send(
+                'Error al cargar colección'
+            );
+
+        }
+
+    };
+
 module.exports = {
 
     listarColecciones,
     crearColeccion,
-    guardarPublicacion
+    guardarPublicacion,
+    verColeccion
 
 };

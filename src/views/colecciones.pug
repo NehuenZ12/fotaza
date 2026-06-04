@@ -32,3 +32,8 @@ block content
             .card-body
 
                 h5.mb-0= coleccion.nombre
+
+                a.btn.btn-primary.mt-2(
+                    href='/colecciones/' + coleccion.id
+                )
+                    | Ver colección

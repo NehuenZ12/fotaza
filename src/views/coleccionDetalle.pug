@@ -1,0 +1,23 @@
+extends layouts/main
+
+block content
+
+    h2= coleccion.nombre
+
+    hr
+
+    if publicaciones.length === 0
+
+        p No hay publicaciones guardadas.
+
+    else
+
+        each publicacion in publicaciones
+
+            .card.mb-3
+
+                .card-body
+
+                    h5.card-title= publicacion.titulo
+
+                    p.card-text= publicacion.descripcion
