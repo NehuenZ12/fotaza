@@ -2,6 +2,7 @@ const Publicacion = require('../models/Publicacion');
 const Imagen = require('../models/Imagen');
 const Etiqueta = require('../models/Etiqueta');
 const PublicacionEtiqueta = require('../models/PublicacionEtiqueta');
+const Coleccion = require('../models/Coleccion');
 
 const mostrarFormulario = (req, res) => {
 
@@ -94,6 +95,14 @@ const listarPublicaciones = async (req, res) => {
 
         const etiquetas = await Etiqueta.findAll();
 
+        const colecciones = 
+            await Coleccion.findAll({
+
+                where: {
+                    usuarioId:
+                        req.session.usuarioId
+                } 
+            });  
         const Comentario = require('../models/Comentario');
         const Valoracion = require('../models/Valoracion');
         const valoraciones = await Valoracion.findAll();
@@ -170,6 +179,7 @@ for (const publicacion of publicaciones) {
             comentarios,
             valoraciones,
             estadisticasValoraciones,
+            colecciones,
             usuarioId: req.session.usuarioId
         });
 

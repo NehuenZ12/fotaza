@@ -202,6 +202,39 @@ block content
 
                     p.text-danger
                         strong Comentarios cerrados por el autor
+                
+                hr
+
+                form(
+                    action='/colecciones/guardar/' + publicacion.id
+                    method='POST'
+                )
+
+                    .row
+
+                        .col-md-4
+
+                            select.form-select(
+                                name='coleccionId'
+                                required
+                            )
+
+                                option(value='')
+                                    | Seleccione colección
+
+                                each coleccion in colecciones
+
+                                    option(
+                                        value=coleccion.id
+                                    )
+                                        = coleccion.nombre
+
+                        .col-md-2
+
+                            button.btn.btn-warning(
+                                type='submit'
+                            )
+                                | Guardar en colección        
 
                 .mt-3
 
