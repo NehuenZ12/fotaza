@@ -1,5 +1,5 @@
-const Coleccion =
-    require('../models/Coleccion');
+const Coleccion = require('../models/Coleccion');
+const ColeccionPublicacion = require('../models/ColeccionPublicacion');
 
 const listarColecciones =
     async (req, res) => {
@@ -70,9 +70,60 @@ const crearColeccion =
 
     };
 
+const guardarPublicacion =
+    async (req, res) => {
+
+        try {
+
+            const yaExiste =
+                await ColeccionPublicacion.findOne({
+
+                    where: {
+
+                        coleccionId:
+                            req.body.coleccionId,
+
+                        publicacionId:
+                            req.params.id
+
+                    }
+
+                });
+
+            if (!yaExiste) {
+
+                await ColeccionPublicacion.create({
+
+                    coleccionId:
+                        req.body.coleccionId,
+
+                    publicacionId:
+                        req.params.id
+
+                });
+
+            }
+
+            res.redirect(
+                '/publicaciones'
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.send(
+                'Error al guardar publicación'
+            );
+
+        }
+
+    };
+
 module.exports = {
 
     listarColecciones,
-    crearColeccion
+    crearColeccion,
+    guardarPublicacion
 
 };

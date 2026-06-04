@@ -21,4 +21,11 @@ router.post(
         .crearColeccion
 );
 
+router.post(
+    '/guardar/:id',
+    verificarSesion,
+    coleccionController
+        .guardarPublicacion
+);
+
 module.exports = router;
