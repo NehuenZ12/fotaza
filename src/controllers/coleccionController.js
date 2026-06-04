@@ -128,9 +128,26 @@ const verColeccion =
         try {
 
             const coleccion =
-                await Coleccion.findByPk(
-                    req.params.id
+                await Coleccion.findOne({
+
+                    where: {
+
+                        id: req.params.id,
+
+                        usuarioId:
+                            req.session.usuarioId
+
+                    }
+                            
+                    
+                });
+
+            if (!coleccion) {
+                
+                return res.send(
+                    'Colección no encontrada'
                 );
+            }
 
             const relaciones =
                 await ColeccionPublicacion.findAll({

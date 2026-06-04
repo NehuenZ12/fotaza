@@ -95,14 +95,22 @@ const listarPublicaciones = async (req, res) => {
 
         const etiquetas = await Etiqueta.findAll();
 
-        const colecciones = 
-            await Coleccion.findAll({
+        let colecciones = [];
 
-                where: {
-                    usuarioId:
-                        req.session.usuarioId
-                } 
-            });  
+        if (req.session.usuarioId) {
+
+            colecciones =
+                await Coleccion.findAll({
+
+                    where: {
+                        usuarioId:
+                            req.session.usuarioId
+                    }
+
+                });
+
+        }
+          
         const Comentario = require('../models/Comentario');
         const Valoracion = require('../models/Valoracion');
         const valoraciones = await Valoracion.findAll();
