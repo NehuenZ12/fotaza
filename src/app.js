@@ -66,7 +66,19 @@ app.use('/mensajes', mensajeRoutes);
 app.use('/colecciones', coleccionRoutes);
 
 app.get('/', (req, res) => {
-    res.render('index');
+
+    if (req.session.usuarioId) {
+
+        return res.redirect(
+            '/publicaciones'
+        );
+
+    }
+
+    res.redirect(
+        '/auth/login'
+    );
+
 });
 
 sequelize.authenticate()
