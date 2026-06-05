@@ -252,46 +252,57 @@ block content
 
                                 p.mb-2= comentario.texto
 
-                                form(
-                                    action='/denuncias-comentarios/' + comentario.id
-                                    method='POST'
-                                )
+                                if comentario.usuarioId === usuarioId
 
-                                    .mb-2
+                                    .border.rounded.p-2.mb-2
 
-                                        select.form-select(
-                                            name='motivo'
-                                            required
-                                        )
+                                        p.mb-2= comentario.texto
 
-                                            option(value='')
-                                                | Seleccione un motivo
+                                        details.mb-2
 
-                                            option(value='Insulto')
-                                                | Insulto
+                                            sumary.btn.btn-danger.btn-sm
+                                                | Denunciar comentario    
 
-                                            option(value='Spam')
-                                                | Spam
+                                            form(
+                                                action='/denuncias/comentarios/' + comentario.id
+                                                method='POST'
+                                            )
 
-                                            option(value='Contenido ofensivo')
-                                                | Contenido ofensivo
+                                                .mt-2
 
-                                            option(value='Acoso')
-                                                | Acoso
+                                                    select.form-select(
+                                                        name='motivo'
+                                                        required
+                                                    )
 
-                                    .mb-2
+                                                        option(value='')
+                                                            | Seleccione un motivo
 
-                                        textarea.form-control(
-                                            name='descripcion'
-                                            rows='2'
-                                            placeholder='Describa el motivo de la denuncia'
-                                            required
-                                        )
+                                                        option(value='Insulto')
+                                                            | Insulto
 
-                                    button.btn.btn-danger.btn-sm(
-                                        type='submit'
-                                    )
-                                        | Denunciar comentario
+                                                        option(value='Spam')
+                                                            | Spam
+
+                                                        option(value='Contenido ofensivo')
+                                                            | Contenido ofensivo
+
+                                                        option(value='Acoso')
+                                                            | Acoso
+                                                
+                                                .mt-2
+
+                                                    textarea.form-control(
+                                                        name='descripcion'
+                                                        rows='2'
+                                                        placeholder='Describa el motivo de la denuncia'
+                                                        required
+                                                    )   
+
+                                                button.btn.btn-danger.btn-sm.mt-2(
+                                                    type='submit'
+                                                )
+                                                    | Enviar denuncia                                           
 
                 hr
 
