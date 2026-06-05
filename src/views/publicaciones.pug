@@ -50,6 +50,10 @@ block content
                         img => img.publicacionId === publicacion.id
                     )
 
+                h5.card-title= publicacion.titulo
+                    
+                p.card-text= publicacion.descripcion    
+
                 if imagenesPublicacion.length > 0
 
                     each imagen in imagenesPublicacion
@@ -123,11 +127,6 @@ block content
                                     type='submit'
                                 )
                                     | Enviar denuncia
-
-                h5.card-title= publicacion.titulo
-                    
-
-                p.card-text= publicacion.descripcion
 
                 -
                     const etiquetasPublicacion = relaciones.filter(
