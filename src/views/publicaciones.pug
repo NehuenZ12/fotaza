@@ -78,46 +78,51 @@ block content
                                 strong Marca de agua:
                                 |  #{imagen.marcaagua}
 
-                        form(
-                            action='/denuncias/' + imagen.id
-                            method='POST'
-                        )
+                        details.mb-3
 
-                            .mb-2
-
-                                select.form-select(
-                                    name='motivo'
-                                    required
-                                )
-
-                                    option(value='')
-                                        | Seleccione un motivo
-
-                                    option(value='Contenido ofensivo')
-                                        | Contenido ofensivo
-
-                                    option(value='Violencia')
-                                        | Violencia
-
-                                    option(value='Contenido inapropiado')
-                                        | Contenido inapropiado
-
-                                    option(value='Spam')
-                                        | Spam
-
-                            .mb-2
-
-                                textarea.form-control(
-                                    name='descripcion'
-                                    rows='2'
-                                    placeholder='Describa el motivo de la denuncia'
-                                    required
-                                )
-
-                            button.btn.btn-danger.btn-sm.mb-3(
-                                type='submit'
-                            )
+                            summary.btn.btn-danger.btn-sm
                                 | Denunciar imagen
+
+                            form(
+                                action='/denuncias/' + imagen.id
+                                method='POST'
+                            )
+
+                                .mt-2
+
+                                    select.form-select(
+                                        name='motivo'
+                                        required
+                                    )
+
+                                        option(value='')
+                                            | Seleccione un motivo
+
+                                        option(value='Contenido ofensivo')
+                                            | Contenido ofensivo
+
+                                        option(value='Violencia')
+                                            | Violencia
+
+                                        option(value='Contenido inapropiado')
+                                            | Contenido inapropiado
+
+                                        option(value='Spam')
+                                            | Spam
+
+                                .mt-2
+
+                                    textarea.form-control(
+                                        name='descripcion'
+                                        rows='2'
+                                        placeholder='Describa el motivo de la denuncia'
+                                        required
+                                    )
+
+                                button.btn.btn-danger.btn-sm.mt-2(
+                                    type='submit'
+                                )
+                                    | Enviar denuncia
 
                 h5.card-title= publicacion.titulo
                     

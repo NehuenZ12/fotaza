@@ -48,6 +48,19 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use((req, res, next) => {
+
+    res.locals.usuarioId =
+        req.session.usuarioId;
+
+    res.locals.usuarioNombre =
+        req.session.usuarioNombre;
+
+    next();
+
+});
+
 app.use('/auth', authRoutes);
 app.use('/publicaciones', publicacionRoutes);
 app.use('/comentarios', comentarioRoutes);
