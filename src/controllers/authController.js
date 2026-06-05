@@ -27,7 +27,7 @@ const iniciarSesion = async (req, res) => {
         req.session.usuarioId = usuario.id;
         req.session.usuarioNombre = usuario.nombre;
 
-        res.redirect('/perfil');
+        res.redirect('/publicaciones');
 
     } catch (error) {
 
