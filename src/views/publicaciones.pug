@@ -211,14 +211,17 @@ block content
                 
                 hr
 
-                form(
-                    action='/colecciones/guardar/' + publicacion.id
-                    method='POST'
-                )
+                details.mb-3
 
-                    .row
+                    summary.btn.btn-warning
+                        | Guardar en colección
 
-                        .col-md-4
+                    form(
+                        action='/colecciones/guardar/' + publicacion.id
+                        method='POST'
+                    )
+
+                        .mt-2
 
                             select.form-select(
                                 name='coleccionId'
@@ -235,12 +238,10 @@ block content
                                     )
                                         = coleccion.nombre
 
-                        .col-md-2
-
-                            button.btn.btn-warning(
-                                type='submit'
-                            )
-                                | Guardar en colección        
+                        button.btn.btn-warning.mt-2(
+                            type='submit'
+                        )
+                            | Guardar        
 
                 .mt-3
 
