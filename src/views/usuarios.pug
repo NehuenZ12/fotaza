@@ -43,7 +43,7 @@ block content
                             value='Hola, me gustaría contactarme contigo.'
                         )
 
-                        button.btn.btn-warning(
-                            type='submit'
+                        a.btn.btn-warning(
+                            href='/mensajes/chat/' + usuario.id
                         )
                             | Enviar mensaje

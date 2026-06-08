@@ -1,0 +1,53 @@
+extends layouts/main
+
+block content
+
+    h2
+        | Chat con #{usuarioDestino.nombre}
+
+    hr
+
+    if mensajes.length === 0
+
+        p No hay mensajes todavía.
+
+    else
+
+        each mensaje in mensajes
+
+            .card.mb-2
+
+                .card-body
+
+                    if mensaje.remitenteId === usuarioId
+
+                        p.mb-1
+                            strong Tú:
+
+                    else
+
+                        p.mb-1
+                            strong #{usuarioDestino.nombre}:
+
+                    p.mb-0= mensaje.texto
+
+    hr
+
+    form(
+        action='/mensajes/enviar/' + usuarioDestino.id
+        method='POST'
+    )
+
+        .mb-3
+
+            textarea.form-control(
+                name='texto'
+                rows='3'
+                placeholder='Escribe un mensaje'
+                required
+            )
+
+        button.btn.btn-primary(
+            type='submit'
+        )
+            | Enviar mensaje

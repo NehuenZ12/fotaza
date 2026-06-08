@@ -19,4 +19,10 @@ router.post(
     mensajeController.enviarMensaje
 );
 
+router.get(
+    '/chat/:id',
+    verificarSesion,
+    mensajeController.verChat
+);
+
 module.exports = router;

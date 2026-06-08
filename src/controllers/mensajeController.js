@@ -91,7 +91,72 @@ const enviarMensaje = async (req, res) => {
 
 };
 
+const verChat = async (req, res) => {
+
+    try {
+
+        const usuarioDestino =
+            await Usuario.findByPk(
+                req.params.id
+            );
+
+        const mensajes =
+            await Mensaje.findAll({
+
+                where: {
+
+                    [Op.or]: [
+
+                        {
+                            remitenteId:
+                                req.session.usuarioId,
+
+                            destinatarioId:
+                                req.params.id
+                        },
+
+                        {
+                            remitenteId:
+                                req.params.id,
+
+                            destinatarioId:
+                                req.session.usuarioId
+                        }
+
+                    ]
+
+                },
+
+                order: [
+                    ['id', 'ASC']
+                ]
+
+            });
+
+        res.render(
+            'chat',
+            {
+                mensajes,
+                usuarioDestino,
+                usuarioId:
+                    req.session.usuarioId
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al cargar chat'
+        );
+
+    }
+
+};
+
 module.exports = {
     listarMensajes,
-    enviarMensaje
+    enviarMensaje,
+    verChat
 };
