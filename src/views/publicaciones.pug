@@ -245,30 +245,36 @@ block content
 
                 .mt-3
 
+                    h6 Comentarios
+
                     each comentario in comentarios
 
                         if comentario.publicacionId === publicacion.id
 
+                            -
+                                const usuarioComentario =
+                                    usuarios.find(
+                                        u => u.id === comentario.usuarioId
+                                    )
+
                             .border.rounded.p-2.mb-2
+
+                                p.mb-1
+
+                                    strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
 
                                 p.mb-2= comentario.texto
 
-                                if comentario.usuarioId === usuarioId
+                                details.mb-2
 
-                                    .border.rounded.p-2.mb-2
+                                    summary.btn.btn-danger.btn-sm
+                                        | Denunciar comentario
 
-                                        p.mb-2= comentario.texto
-
-                                        details.mb-2
-
-                                            sumary.btn.btn-danger.btn-sm
-                                                | Denunciar comentario    
-
-                                            form(
-                                                action='/denuncias/comentarios/' + comentario.id
-                                                method='POST'
-                                            )
-
+                                    form(
+                                        action='/denuncias-comentarios/' + comentario.id
+                                        method='POST'
+                                    )
+               
                                                 .mt-2
 
                                                     select.form-select(

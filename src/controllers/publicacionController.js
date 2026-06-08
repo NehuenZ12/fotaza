@@ -3,6 +3,7 @@ const Imagen = require('../models/Imagen');
 const Etiqueta = require('../models/Etiqueta');
 const PublicacionEtiqueta = require('../models/PublicacionEtiqueta');
 const Coleccion = require('../models/Coleccion');
+const Usuario = require('../models/Usuario');
 
 const mostrarFormulario = (req, res) => {
 
@@ -179,12 +180,15 @@ for (const publicacion of publicaciones) {
             order: [['id', 'DESC']]
         });
 
+        const usuarios = await Usuario.findAll();
+
         res.render('publicaciones', {
             publicaciones: publicacionesOrdenadas,
             imagenes,
             relaciones,
             etiquetas,
             comentarios,
+            usuarios,
             valoraciones,
             estadisticasValoraciones,
             colecciones,
