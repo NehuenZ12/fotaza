@@ -28,7 +28,12 @@ const Usuario = sequelize.define('Usuario', {
     activo: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-    }
+    },
+
+rol: {
+    type: DataTypes.STRING,
+    defaultValue: 'USUARIO'
+}
 
 });
 
