@@ -44,9 +44,24 @@ block content
 
         each publicacion in publicaciones.slice(0, 5)
 
+            -
+
+                const imagenPublicacion =
+                    imagenes.find(
+                        img =>
+                            img.publicacionId === publicacion.id
+                    )
+
             .card.mb-2
 
                 .card-body
+
+                    if imagenPublicacion
+
+                        img.img-thumbnail.mb-2(
+                            src='/uploads/' + imagenPublicacion.ruta
+                            style='max-width: 150px;'
+                        )
 
                     h6.card-title
                         = publicacion.titulo

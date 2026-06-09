@@ -163,14 +163,17 @@ app.get('/perfil', verificarSesion, async (req, res) => {
 
             });
 
+        const imagenes = await Imagen.findAll();
+
         res.render('perfil', {
 
             usuario,
             publicaciones,
             seguidores,
             seguidos,
-            colecciones
-
+            colecciones,
+            imagenes
+            
         });
 
     } catch (error) {
