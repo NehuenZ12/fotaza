@@ -28,3 +28,11 @@ body {
 img {
     border-radius: 10px;
 }
+
+.publicacion-img {
+    max-height: 800px;
+    width: auto;
+    max-width: 600%;
+    object-fit: cover;
+    border-radius: 12px;
+}
