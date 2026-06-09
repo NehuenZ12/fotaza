@@ -36,20 +36,18 @@ block content
 
         each mensaje in mensajes
 
-            .card.mb-2
+            if mensaje.remitenteId === usuarioId
 
-                .card-body
+                .text-end.mb-2
 
-                    if mensaje.remitenteId === usuarioId
+                    .mensaje-propio
 
-                        p.mb-1
+                        p.mb-0= mensaje.texto
 
-                            strong Tú:
+            else
 
-                    else
+                .text-start.mb-2
 
-                        p.mb-1
+                    .mensaje-ajeno
 
-                            strong #{usuarioDestino.nombre}:
-
-                    p.mb-0= mensaje.texto
+                        p.mb-0= mensaje.texto
