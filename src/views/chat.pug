@@ -7,32 +7,6 @@ block content
 
     hr
 
-    if mensajes.length === 0
-
-        p No hay mensajes todavía.
-
-    else
-
-        each mensaje in mensajes
-
-            .card.mb-2
-
-                .card-body
-
-                    if mensaje.remitenteId === usuarioId
-
-                        p.mb-1
-                            strong Tú:
-
-                    else
-
-                        p.mb-1
-                            strong #{usuarioDestino.nombre}:
-
-                    p.mb-0= mensaje.texto
-
-    hr
-
     form(
         action='/mensajes/enviar/' + usuarioDestino.id
         method='POST'
@@ -51,3 +25,31 @@ block content
             type='submit'
         )
             | Enviar mensaje
+
+    hr
+
+    if mensajes.length === 0
+
+        p No hay mensajes todavía.
+
+    else
+
+        each mensaje in mensajes
+
+            .card.mb-2
+
+                .card-body
+
+                    if mensaje.remitenteId === usuarioId
+
+                        p.mb-1
+
+                            strong Tú:
+
+                    else
+
+                        p.mb-1
+
+                            strong #{usuarioDestino.nombre}:
+
+                    p.mb-0= mensaje.texto
