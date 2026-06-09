@@ -2,49 +2,65 @@ extends layouts/main
 
 block content
 
-    h2= usuario.nombre
+    h2 Perfil de #{usuario.nombre}
 
-    p
-        strong Email:
-        |  #{usuario.email}
+    .card.mb-4
 
-    hr
+        .card-body
 
-    p
-        strong Seguidores:
-        |  #{seguidores}
+            p
+                strong Email:
+                |  #{usuario.email}
 
-    p
-        strong Siguiendo:
-        |  #{seguidos}
+            hr
 
-    p
-        strong Publicaciones:
-        |  #{publicaciones.length}
+            h5 Resumen
 
-    hr
+            p
+                strong Seguidores:
+                |  #{seguidores}
 
-    h4 Publicaciones
+            p
+                strong Siguiendo:
+                |  #{seguidos}
 
-    each publicacion in publicaciones
+            p
+                strong Publicaciones:
+                |  #{publicaciones.length}
 
-        .card.mb-3
+    h4 Últimas publicaciones
 
-            .card-body
-                -
-                    const imagen = 
-                        imagenes.find(
-                            img => 
-                                img.publicacionId === 
-                                publicacion.id
+    if publicaciones.length === 0
+
+        p Este usuario no tiene publicaciones.
+
+    else
+
+        each publicacion in publicaciones
+
+            .card.mb-3
+
+                .card-body
+
+                    -
+                        const imagen =
+                            imagenes.find(
+                                img =>
+                                    img.publicacionId ===
+                                    publicacion.id
+                            )
+
+                    if imagen
+
+                        img.img-fluid.publicacion-img.mb-3(
+                            src='/uploads/' + imagen.ruta
+                            alt='Imagen'
                         )
-                if imagen
 
-                    img.img-fluid.mb-3(
-                        src='/uploads/' + imagen.ruta
-                        alt='Imagen'
-                    )      
+                    h5.card-title
+                        = publicacion.titulo
 
-                h5.card-title= publicacion.titulo
+                    if publicacion.descripcion
 
-                p.card-text= publicacion.descripcion
+                        p.card-text
+                            = publicacion.descripcion
