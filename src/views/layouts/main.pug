@@ -53,6 +53,13 @@ html(lang="es")
                         )
                             | Colecciones
 
+                        if usuarioRol === 'VALIDADOR'
+
+                            a.nav-link.text-warning(
+                                href="/validador"
+                            )
+                                | Validador
+
                         a.nav-link.text-white(
                             href="/perfil"
                         )
