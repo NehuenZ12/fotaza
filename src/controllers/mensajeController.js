@@ -27,7 +27,7 @@ const listarMensajes = async (req, res) => {
     }, 
            
             order: [
-                ['id', 'ASC']
+                ['id', 'DESC']
             ]
 
         });
