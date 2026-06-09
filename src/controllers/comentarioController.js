@@ -73,6 +73,35 @@ const crearComentario = async (req, res) => {
 
 };
 
+const eliminarComentario = async (req, res) => {
+
+    try {
+
+        await Comentario.destroy({
+
+            where: {
+                id: req.params.id
+            }
+
+        });
+
+        res.redirect(
+            '/publicaciones'
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al eliminar comentario'
+        );
+
+    }
+
+};
+
 module.exports = {
-    crearComentario
+    crearComentario,
+    eliminarComentario
 };

@@ -10,4 +10,10 @@ router.post(
     comentarioController.crearComentario
 );
 
+router.get(
+    '/eliminar/:id',
+    verificarSesion,
+    comentarioController.eliminarComentario
+);
+
 module.exports = router;

@@ -265,6 +265,13 @@ block content
 
                                 p.mb-2= comentario.texto
 
+                                if publicacion.usuarioId === usuarioId
+
+                                    a.btn.btn-sm.btn-warning(
+                                        href='/comentarios/eliminar/' + comentario.id
+                                    )
+                                        | Eliminar
+
                                 details.mb-2
 
                                     summary.btn.btn-danger.btn-sm
