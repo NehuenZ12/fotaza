@@ -58,3 +58,7 @@ img {
 .border.rounded.p-2.mb-2 {
     background-color: #f8f9fa;
 }
+
+.card-body {
+    padding: 20px;
+}
