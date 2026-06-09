@@ -36,3 +36,16 @@ img {
     object-fit: cover;
     border-radius: 12px;
 }
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
