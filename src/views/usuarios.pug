@@ -12,38 +12,30 @@ block content
 
                 .card-body
 
-                    h5.card-title= usuario.nombre
+                    h5.card-title
+                        = usuario.nombre
 
-                    p.card-text= usuario.email
+                    p.card-text
+                        = usuario.email
 
-                    a.btn.btn-primary.me-2(
-                        href='/usuarios/' + usuario.id
-                    )
-                        | Ver perfil
+                    .mt-3
 
-                    a.btn.btn-success.me-2(
-                        href='/seguir/' + usuario.id
-                    )
-                        | Seguir
-
-                    a.btn.btn-secondary.me-2(
-                        href='/seguir/dejar/' + usuario.id
-                    )
-                        | Dejar de seguir
-
-                    form(
-                        action='/mensajes/enviar/' + usuario.id
-                        method='POST'
-                        style='display:inline'
-                    )
-
-                        input(
-                            type='hidden'
-                            name='texto'
-                            value='Hola, me gustaría contactarme contigo.'
+                        a.btn.btn-primary.me-2.mb-2(
+                            href='/usuarios/' + usuario.id
                         )
+                            | Ver perfil
 
-                        a.btn.btn-warning(
+                        a.btn.btn-success.me-2.mb-2(
+                            href='/seguir/' + usuario.id
+                        )
+                            | Seguir
+
+                        a.btn.btn-secondary.me-2.mb-2(
+                            href='/seguir/dejar/' + usuario.id
+                        )
+                            | Dejar de seguir
+
+                        a.btn.btn-warning.mb-2(
                             href='/mensajes/chat/' + usuario.id
                         )
                             | Enviar mensaje

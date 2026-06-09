@@ -62,3 +62,21 @@ img {
 .card-body {
     padding: 20px;
 }
+
+.card-title {
+    font-weight: 600;
+    color: #212529;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    transition: 0.2s;
+}
+
+.card-body {
+    padding: 25px;
+}
