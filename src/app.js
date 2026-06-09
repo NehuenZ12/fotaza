@@ -32,6 +32,7 @@ const interesRoutes = require('./routes/interesRoutes');
 const Mensaje = require('./models/Mensaje');
 const mensajeRoutes = require('./routes/mensajeRoutes');
 const coleccionRoutes = require('./routes/coleccionRoutes');
+const Coleccion = require('./models/Coleccion');
 
 const app = express();
 const PORT = 3000;
@@ -109,10 +110,79 @@ sequelize.authenticate()
         console.error('Error de conexión:', error);
     });
 
-app.get('/perfil', verificarSesion, (req, res) => {
-    res.render('perfil', {
-        nombre: req.session.usuarioNombre
-    });
+app.get('/perfil', verificarSesion, async (req, res) => {
+
+    try {
+
+        const usuario =
+            await Usuario.findByPk(
+                req.session.usuarioId
+            );
+
+        const publicaciones =
+            await Publicacion.findAll({
+
+                where: {
+                    usuarioId:
+                        req.session.usuarioId
+                },
+
+                order: [
+                    ['id', 'DESC']
+                ]
+
+            });
+
+        const seguidores =
+            await Seguimiento.count({
+
+                where: {
+                    seguidoId:
+                        req.session.usuarioId
+                }
+
+            });
+
+        const seguidos =
+            await Seguimiento.count({
+
+                where: {
+                    seguidorId:
+                        req.session.usuarioId
+                }
+
+            });
+
+        const colecciones =
+            await Coleccion.count({
+
+                where: {
+                    usuarioId:
+                        req.session.usuarioId
+                }
+
+            });
+
+        res.render('perfil', {
+
+            usuario,
+            publicaciones,
+            seguidores,
+            seguidos,
+            colecciones
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.send(
+            'Error al cargar perfil'
+        );
+
+    }
+
 });
 
 app.listen(PORT, () => {

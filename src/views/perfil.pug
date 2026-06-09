@@ -2,11 +2,61 @@ extends layouts/main
 
 block content
 
-    h2 Perfil
+    h2 Mi Perfil
 
-    p Bienvenido #{nombre}
+    p
+        strong Nombre:
+        |  #{usuario.nombre}
 
-    p Has iniciado sesión correctamente.
+    p
+        strong Correo:
+        |  #{usuario.email}
 
-    a.btn.btn-danger(href="/auth/logout")
-    | Cerrar sesión
+    hr
+
+    h4 Resumen
+
+    p
+        strong Publicaciones:
+        |  #{publicaciones.length}
+
+    p
+        strong Seguidores:
+        |  #{seguidores}
+
+    p
+        strong Seguidos:
+        |  #{seguidos}
+
+    p
+        strong Colecciones:
+        |  #{colecciones}
+
+    hr
+
+    h4 Mis últimas publicaciones
+
+    if publicaciones.length === 0
+
+        p No tienes publicaciones todavía.
+
+    else
+
+        each publicacion in publicaciones.slice(0, 5)
+
+            .card.mb-2
+
+                .card-body
+
+                    h6.card-title
+                        = publicacion.titulo
+
+                    if publicacion.descripcion
+
+                        p.card-text
+                            = publicacion.descripcion
+
+    a.btn.btn-danger.mt-3(
+        href='/auth/logout'
+    )
+        | Cerrar sesión
