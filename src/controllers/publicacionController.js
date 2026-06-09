@@ -90,7 +90,7 @@ const listarPublicaciones = async (req, res) => {
             where: {
                 activa : true
             },
-            
+
             order: [['id', 'DESC']]
         });
 
@@ -157,10 +157,12 @@ for (const publicacion of publicaciones) {
             estadisticasValoraciones[b.id];
 
         const destacadaA =
-            estadisticaA.promedio >= 4;
+            estadisticaA.promedio >= 4 &&
+            estadisticaA.cantidad >= 3;
 
         const destacadaB =
-            estadisticaB.promedio >= 4;
+            estadisticaB.promedio >= 4 &&
+            estadisticaB.cantidad >= 3;
 
         if (
             destacadaA &&
