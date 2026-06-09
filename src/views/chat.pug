@@ -2,52 +2,54 @@ extends layouts/main
 
 block content
 
-    h2
-        | Chat con #{usuarioDestino.nombre}
+    .chat-contenedor
 
-    hr
+        h2
+            | Chat con #{usuarioDestino.nombre}
 
-    form(
-        action='/mensajes/enviar/' + usuarioDestino.id
-        method='POST'
-    )
+        hr
 
-        .mb-3
-
-            textarea.form-control(
-                name='texto'
-                rows='3'
-                placeholder='Escribe un mensaje'
-                required
-            )
-
-        button.btn.btn-primary(
-            type='submit'
+        form(
+            action='/mensajes/enviar/' + usuarioDestino.id
+            method='POST'
         )
-            | Enviar mensaje
 
-    hr
+            .mb-3
 
-    if mensajes.length === 0
+                textarea.form-control(
+                    name='texto'
+                    rows='3'
+                    placeholder='Escribe un mensaje'
+                    required
+                )
 
-        p No hay mensajes todavía.
+            button.btn.btn-primary(
+                type='submit'
+            )
+                | Enviar mensaje
 
-    else
+        hr
 
-        each mensaje in mensajes
+        if mensajes.length === 0
 
-            if mensaje.remitenteId === usuarioId
+            p No hay mensajes todavía.
 
-                .text-end.mb-2
+        else
 
-                    .mensaje-propio
+            each mensaje in mensajes
 
-                        p.mb-0= mensaje.texto
+                if mensaje.remitenteId === usuarioId
 
-            else
+                    .text-end.mb-2
 
-                .text-start.mb-2
+                        .mensaje-propio
 
-                    .mensaje-ajeno
+                            p.mb-0= mensaje.texto
 
-                        p.mb-0= mensaje.texto
+                else
+
+                    .text-start.mb-2
+
+                        .mensaje-ajeno
+
+                            p.mb-0= mensaje.texto

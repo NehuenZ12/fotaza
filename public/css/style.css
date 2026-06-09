@@ -100,3 +100,8 @@ img {
     max-width: 70%;
     margin-bottom: 10px;
 }
+
+.chat-contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+}
