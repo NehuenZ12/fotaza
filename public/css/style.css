@@ -54,3 +54,7 @@ img {
     font-size: 0.9rem;
     padding: 6px 10px;
 }
+
+.border.rounded.p-2.mb-2 {
+    background-color: #f8f9fa;
+}
