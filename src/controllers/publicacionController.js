@@ -87,6 +87,10 @@ const listarPublicaciones = async (req, res) => {
     try {
 
         const publicaciones = await Publicacion.findAll({
+            where: {
+                activa : true
+            },
+            
             order: [['id', 'DESC']]
         });
 
