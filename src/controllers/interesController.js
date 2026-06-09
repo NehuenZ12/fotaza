@@ -48,7 +48,10 @@ const mostrarInteres =
                     ' está interesado en una de tus imágenes',
 
                 usuarioId:
-                    publicacion.usuarioId
+                    publicacion.usuarioId,
+
+                usuarioInteresadoId:
+                    usuario.id
 
             });
 

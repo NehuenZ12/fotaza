@@ -22,7 +22,12 @@ const Notificacion = sequelize.define('Notificacion', {
     usuarioId: {
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    },
+
+    usuarioInteresadoId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+}
 
 });
 

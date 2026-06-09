@@ -23,6 +23,18 @@ block content
 
                     br
 
+                    if notificacion.usuarioInteresadoId
+
+                        a.btn.btn-sm.btn-primary.mt-2.me-2(
+                            href='/usuarios/' + notificacion.usuarioInteresadoId
+                        )
+                            | Ver perfil
+
+                        a.btn.btn-sm.btn-warning.mt-2.me-2(
+                            href='/mensajes/chat/' + notificacion.usuarioInteresadoId
+                        )
+                            | Enviar mensaje
+
                     if !notificacion.leida
 
                         a.btn.btn-sm.btn-success.mt-2(
