@@ -270,8 +270,9 @@ block content
                                     a.btn.btn-sm.btn-warning.mb-2(
                                         href='/comentarios/eliminar/' + comentario.id
                                     )
-                                        | Eliminar comentario    
-                                        
+                                        | Eliminar comentario 
+   
+                            if comentario.usuarioId !== usuarioId      
 
                                 details.mb-2                               
 
@@ -347,6 +348,8 @@ block content
                         type='submit'
                     )
                         | Enviar valoración
+
+        if publicacion.usuarioId !== usuarioId
 
             a.btn.btn-info.btn-sm.ms-2(
                 href='/intereses/' + publicacion.id
