@@ -267,12 +267,13 @@ block content
 
                                 if publicacion.usuarioId === usuarioId
 
-                                    a.btn.btn-sm.btn-warning(
+                                    a.btn.btn-sm.btn-warning.mb-2(
                                         href='/comentarios/eliminar/' + comentario.id
                                     )
-                                        | Eliminar
+                                        | Eliminar comentario    
+                                        
 
-                                details.mb-2
+                                details.mb-2                               
 
                                     summary.btn.btn-danger.btn-sm
                                         | Denunciar comentario
@@ -318,7 +319,9 @@ block content
                                                 )
                                                     | Enviar denuncia                                           
 
-                hr
+            hr
+
+            if publicacion.usuarioId !== usuarioId
 
                 form(
                     action='/valoraciones/' + publicacion.id
@@ -345,7 +348,7 @@ block content
                     )
                         | Enviar valoración
 
-                    a.btn.btn-info.btn-sm.ms-2(
-                         href='/intereses/' + publicacion.id
-                    )
-                        | Me interesa
+            a.btn.btn-info.btn-sm.ms-2(
+                href='/intereses/' + publicacion.id
+            )
+                | Me interesa
