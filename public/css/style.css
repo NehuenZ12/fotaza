@@ -2,6 +2,8 @@ body {
     background-color: #f5f7fa;
 }
 
+/* ---------- NAVBAR ---------- */
+
 .navbar {
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
@@ -11,111 +13,43 @@ body {
     font-weight: bold;
 }
 
+/* ---------- CONTENEDORES ---------- */
+
 .container {
     max-width: 1400px;
 }
 
-.card {
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border: none;
+.main-content {
+    margin-left: 120px;
+    transition: margin-left 0.3s;
+
+    display: flex;
+    justify-content: center;
 }
 
-.btn {
-    border-radius: 8px;
-}
-
-img {
-    border-radius: 10px;
-}
-
-.publicacion-img {
-    max-height: 600px;
-    width: auto;
-    max-width: 400%;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.card {
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding: 10px;
-    margin-bottom: 25px;
-}
-
-.card-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.badge {
-    font-size: 0.9rem;
-    padding: 6px 10px;
-}
-
-.border.rounded.p-2.mb-2 {
-    background-color: #f8f9fa;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.card-title {
-    font-weight: 600;
-    color: #212529;
-}
-
-.card-text {
-    color: #6c757d;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    transition: 0.2s;
-}
-
-.card-body {
-    padding: 25px;
-}
-
-.mensaje-propio {
-    background-color: #0d6efd;
-    color: white;
-    padding: 12px;
-    border-radius: 15px;
-    display: inline-block;
-    max-width: 70%;
-    margin-bottom: 10px;
-}
-
-.mensaje-ajeno {
-    background-color: #e9ecef;
-    color: black;
-    padding: 12px;
-    border-radius: 15px;
-    display: inline-block;
-    max-width: 70%;
-    margin-bottom: 10px;
-}
-
-.chat-contenedor {
+.main-content .container-fluid {
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
 }
+
+/* ---------- SIDEBAR ---------- */
 
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
+
     width: 120px;
     height: 100vh;
+
     background: #111827;
+
     padding-top: 20px;
+
     overflow: hidden;
+
     transition: width 0.3s;
+
     z-index: 1000;
 }
 
@@ -123,10 +57,15 @@ img {
     width: 260px;
 }
 
+.sidebar:hover ~ .main-content {
+    margin-left: 260px;
+}
+
 .logo {
     color: white;
     font-size: 2rem;
     font-weight: bold;
+
     padding: 0 20px 30px 20px;
 }
 
@@ -138,9 +77,12 @@ img {
 .menu-item {
     display: flex;
     align-items: center;
+
     color: white;
     text-decoration: none;
+
     padding: 15px 20px;
+
     white-space: nowrap;
 }
 
@@ -153,21 +95,135 @@ img {
     color: #ff5b5b;
 }
 
-.main-content {
-    margin-left: 120px;
-    transition: margin-left 0.3s;
+/* ---------- TARJETAS ---------- */
+
+.card {
+    border: none;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+    padding: 20px;
+
+    margin-bottom: 35px;
+
+    transition: all 0.25s ease;
 }
 
-.sidebar:hover ~ .main-content {
-    margin-left: 260px;
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
-.main-content {
-    display: flex;
-    justify-content: center;
+.card-body {
+    padding: 25px;
 }
 
-.main-content .container-fluid {
-    max-width: 900px;
+.card-title {
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: #212529;
+
+    margin-bottom: 20px;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+/* ---------- BOTONES ---------- */
+
+.btn {
+    border-radius: 25px;
+
+    padding: 8px 18px;
+
+    font-weight: 500;
+}
+
+/* ---------- IMÁGENES ---------- */
+
+img {
+    border-radius: 10px;
+}
+
+.publicacion-img {
     width: 100%;
+
+    max-height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+/* ---------- ETIQUETAS ---------- */
+
+.badge {
+    border-radius: 20px;
+
+    padding: 8px 14px;
+
+    font-size: 0.85rem;
+}
+
+/* ---------- COMENTARIOS ---------- */
+
+.border.rounded.p-2.mb-2 {
+    background: #f8f9fa;
+
+    border: none !important;
+
+    border-radius: 15px !important;
+
+    padding: 15px !important;
+}
+
+/* ---------- CHAT ---------- */
+
+.chat-contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mensaje-propio {
+    background-color: #0d6efd;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    display: inline-block;
+
+    max-width: 70%;
+
+    margin-bottom: 10px;
+}
+
+.mensaje-ajeno {
+    background-color: #e9ecef;
+
+    color: black;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    display: inline-block;
+
+    max-width: 70%;
+
+    margin-bottom: 10px;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }
