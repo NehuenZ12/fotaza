@@ -16,17 +16,31 @@ block content
 
             h5 Resumen
 
-            p
-                strong Seguidores:
-                |  #{seguidores}
+            .row.text-center.mt-4
 
-            p
-                strong Siguiendo:
-                |  #{seguidos}
+                .col-md-4
 
-            p
-                strong Publicaciones:
-                |  #{publicaciones.length}
+                    h3.mb-0.text-primary
+                        = seguidores
+
+                    small.text-muted
+                        | Seguidores
+
+                .col-md-4
+
+                    h3.mb-0.text-primary
+                        = seguidos
+
+                    small.text-muted
+                        | Siguiendo
+
+                .col-md-4
+
+                    h3.mb-0.text-primary
+                        = publicaciones.length
+
+                    small.text-muted
+                        | Publicaciones
 
     h4 Últimas publicaciones
 

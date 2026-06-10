@@ -235,3 +235,6 @@ img {
     margin-bottom: 10px;
 }
 
+.row.text-center h3 {
+    font-weight: 700;
+}
