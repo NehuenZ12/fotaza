@@ -1,8 +1,15 @@
 doctype html
 html(lang="es")
+
     head
+
         meta(charset="UTF-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+        meta(
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        )
+
         title Fotaza
 
         link(
@@ -13,69 +20,68 @@ html(lang="es")
         link(
             rel="stylesheet"
             href="/css/style.css"
-)
+        )
 
     body
 
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .sidebar
 
-            .container
+            .logo
 
-                a.navbar-brand(href="/")
+                a(href="/")
                     | Fotaza
 
-                if usuarioId
+            if usuarioId
 
-                    .navbar-nav.me-auto
+                a.menu-item(
+                    href="/publicaciones"
+                )
+                    span Publicaciones
 
-                        a.nav-link.text-white(
-                            href="/publicaciones"
-                        )
-                            | Publicaciones
+                a.menu-item(
+                    href="/usuarios"
+                )
+                    span Usuarios
 
-                        a.nav-link.text-white(
-                            href="/usuarios"
-                        )
-                            | Usuarios
+                a.menu-item(
+                    href="/seguir/publicaciones"
+                )
+                    span Seguidos
 
-                        a.nav-link.text-white(
-                            href="/seguir/publicaciones"
-                        )
-                            | Seguidos
+                a.menu-item(
+                    href="/mensajes"
+                )
+                    span Mensajes
 
-                        a.nav-link.text-white(
-                            href="/mensajes"
-                        )
-                            | Mensajes
+                a.menu-item(
+                    href="/notificaciones"
+                )
+                    span Notificaciones
 
-                        a.nav-link.text-white(
-                            href="/notificaciones"
-                        )
-                            | Notificaciones
+                a.menu-item(
+                    href="/colecciones"
+                )
+                    span Colecciones
 
-                        a.nav-link.text-white(
-                            href="/colecciones"
-                        )
-                            | Colecciones
+                if usuarioRol === 'VALIDADOR'
 
-                        if usuarioRol === 'VALIDADOR'
+                    a.menu-item(
+                        href="/validador"
+                    )
+                        span Validador
 
-                            a.nav-link.text-warning(
-                                href="/validador"
-                            )
-                                | Validador
+                a.menu-item(
+                    href="/perfil"
+                )
+                    span Perfil
 
-                        a.nav-link.text-white(
-                            href="/perfil"
-                        )
-                            | Perfil
+                a.menu-item.salir(
+                    href="/auth/logout"
+                )
+                    span Salir
 
-                        a.nav-link.text-danger(
-                            href="/auth/logout"
-                        )
-                            | Salir
+        .main-content
 
+            .container-fluid.p-4
 
-        .container.mt-4
-
-            block content
+                block content

@@ -105,3 +105,59 @@ img {
     max-width: 900px;
     margin: 0 auto;
 }
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 100vh;
+    background: #111827;
+    padding-top: 20px;
+    overflow: hidden;
+    transition: width 0.3s;
+    z-index: 1000;
+}
+
+.sidebar:hover {
+    width: 260px;
+}
+
+.logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 20px 30px 20px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    white-space: nowrap;
+}
+
+.menu-item:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: #ffc107;
+}
+
+.salir {
+    color: #ff5b5b;
+}
+
+.main-content {
+    margin-left: 150px;
+    transition: margin-left 0.3s;
+}
+
+.sidebar:hover ~ .main-content {
+    margin-left: 260px;
+}
