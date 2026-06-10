@@ -110,7 +110,7 @@ img {
     position: fixed;
     left: 0;
     top: 0;
-    width: 150px;
+    width: 120px;
     height: 100vh;
     background: #111827;
     padding-top: 20px;
@@ -154,7 +154,7 @@ img {
 }
 
 .main-content {
-    margin-left: 150px;
+    margin-left: 120px;
     transition: margin-left 0.3s;
 }
 
