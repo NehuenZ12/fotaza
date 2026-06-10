@@ -163,121 +163,78 @@ block content
 
                 hr
 
-                if publicacion.usuarioId === usuarioId
-
-                    if publicacion.comentariosAbiertos
-
-                        a.btn.btn-danger.btn-sm.mb-3(
-                            href='/publicaciones/cerrar-comentarios/' + publicacion.id
-                        )
-                            | Cerrar comentarios
-
-                    else
-
-                        a.btn.btn-success.btn-sm.mb-3(
-                            href='/publicaciones/abrir-comentarios/' + publicacion.id
-                        )
-                            | Abrir comentarios
-
-                if publicacion.comentariosAbiertos
-
-                    form(
-                        action='/comentarios/crear/' + publicacion.id
-                        method='POST'
-                    )
-
-                        .mb-2
-
-                            textarea.form-control(
-                                name='texto'
-                                rows='1'
-                                placeholder='Escribe un comentario'
-                                required
-                            )
-
-                        button.btn.btn-sm.btn-primary(
-                            type='submit'
-                        )
-                            | Comentar
-
-                else
-
-                    p.text-danger
-                        strong Comentarios cerrados por el autor
-                
-                hr
-
                 details.mb-3
 
-                    summary.btn.btn-warning
-                        | Guardar en colección
+                    summary.btn.btn-outline-primary
+                        | 💬 Comentarios
 
-                    form(
-                        action='/colecciones/guardar/' + publicacion.id
-                        method='POST'
-                    )
+                    .mt-3
 
-                        .mt-2
+                        if publicacion.comentariosAbiertos
 
-                            select.form-select(
-                                name='coleccionId'
-                                required
+                            form(
+                                action='/comentarios/crear/' + publicacion.id
+                                method='POST'
                             )
 
-                                option(value='')
-                                    | Seleccione colección
+                                .mb-2
 
-                                each coleccion in colecciones
-
-                                    option(
-                                        value=coleccion.id
-                                    )
-                                        = coleccion.nombre
-
-                        button.btn.btn-warning.mt-2(
-                            type='submit'
-                        )
-                            | Guardar        
-
-                .mt-3
-
-                    h6 Comentarios
-
-                    each comentario in comentarios
-
-                        if comentario.publicacionId === publicacion.id
-
-                            -
-                                const usuarioComentario =
-                                    usuarios.find(
-                                        u => u.id === comentario.usuarioId
+                                    textarea.form-control(
+                                        name='texto'
+                                        rows='1'
+                                        placeholder='Escribe un comentario'
+                                        required
                                     )
 
-                            .border.rounded.p-3.mb-2.bg-light
+                                button.btn.btn-sm.btn-primary(
+                                    type='submit'
+                                )
+                                    | Comentar
 
-                                .d-flex.justify-content-between.align-items-start
+                        else
 
-                                    div
+                            p.text-danger
+                                strong Comentarios cerrados por el autor
 
-                                        p.mb-1
+                        hr
 
-                                            strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
+                        h6 Comentarios
 
-                                        p.mb-0= comentario.texto
+                        each comentario in comentarios
 
-                                    if publicacion.usuarioId === usuarioId
+                            if comentario.publicacionId === publicacion.id
 
-                                        a.btn.btn-sm.btn-warning(
-                                            href='/comentarios/eliminar/' + comentario.id
+                                -
+                                    const usuarioComentario =
+                                        usuarios.find(
+                                            u => u.id === comentario.usuarioId
                                         )
-                                            | Eliminar 
-   
-                            if comentario.usuarioId !== usuarioId      
 
-                                details.mb-2                               
+                                .border.rounded.p-3.mb-2.bg-light
 
-                                    summary.btn.btn-outline-danger.btn-sm
-                                        | Reportar
+                                    .d-flex.justify-content-between.align-items-start
+
+                                        div
+
+                                            p.mb-1
+
+                                                strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
+
+                                            p.mb-0= comentario.texto
+
+                                        if publicacion.usuarioId === usuarioId
+
+                                            a.btn.btn-sm.btn-warning(
+                                                href='/comentarios/eliminar/' + comentario.id
+                                            )
+                                                | Eliminar
+
+                                if comentario.usuarioId !== usuarioId
+
+                                    details.mb-2
+
+                                        summary.btn.btn-outline-danger.btn-sm
+                                            | Reportar
 
                                     form(
                                         action='/denuncias-comentarios/' + comentario.id
