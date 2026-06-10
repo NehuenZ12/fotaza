@@ -190,7 +190,7 @@ block content
 
                             textarea.form-control(
                                 name='texto'
-                                rows='2'
+                                rows='1'
                                 placeholder='Escribe un comentario'
                                 required
                             )
@@ -253,27 +253,31 @@ block content
                                         u => u.id === comentario.usuarioId
                                     )
 
-                            .border.rounded.p-2.mb-2
+                            .border.rounded.p-3.mb-2.bg-light
 
-                                p.mb-1
+                                .d-flex.justify-content-between.align-items-start
 
-                                    strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
+                                    div
 
-                                p.mb-2= comentario.texto
+                                        p.mb-1
 
-                                if publicacion.usuarioId === usuarioId
+                                            strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
 
-                                    a.btn.btn-sm.btn-warning.mb-2(
-                                        href='/comentarios/eliminar/' + comentario.id
-                                    )
-                                        | Eliminar comentario 
+                                        p.mb-0= comentario.texto
+
+                                    if publicacion.usuarioId === usuarioId
+
+                                        a.btn.btn-sm.btn-warning(
+                                            href='/comentarios/eliminar/' + comentario.id
+                                        )
+                                            | Eliminar 
    
                             if comentario.usuarioId !== usuarioId      
 
                                 details.mb-2                               
 
-                                    summary.btn.btn-danger.btn-sm
-                                        | Denunciar comentario
+                                    summary.btn.btn-outline-danger.btn-sm
+                                        | Reportar
 
                                     form(
                                         action='/denuncias-comentarios/' + comentario.id
