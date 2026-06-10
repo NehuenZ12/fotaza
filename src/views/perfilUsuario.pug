@@ -64,6 +64,14 @@ block content
                                     publicacion.id
                             )
 
+                    h5.card-title
+                        = publicacion.titulo
+
+                    if publicacion.descripcion
+
+                        p.card-text
+                            = publicacion.descripcion        
+
                     if imagen
 
                         img.img-fluid.publicacion-img.mb-3(
@@ -71,10 +79,16 @@ block content
                             alt='Imagen'
                         )
 
-                    h5.card-title
-                        = publicacion.titulo
+                    if publicacion.usuarioId !== usuarioId
 
-                    if publicacion.descripcion
+                        a.btn.btn-info.btn-sm.mt-2(
+                            href='/intereses/' + publicacion.id
+                        )
 
-                        p.card-text
-                            = publicacion.descripcion
+                            img(
+                                src='/img/corazon.png'
+                                alt='Interés'
+                                class='icono-boton'
+                            )
+
+                            | Me interesa         

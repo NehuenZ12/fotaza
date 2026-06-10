@@ -55,7 +55,8 @@ const verPerfil = async (req, res) => {
 
                 where: {
                     usuarioId: req.params.id
-                }
+                },
+                order: [['createdAt', 'DESC']]
 
             });
 
