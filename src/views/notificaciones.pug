@@ -16,33 +16,55 @@ block content
 
                 .card-body
 
-                    p.mb-1= notificacion.mensaje
+                    p.mb-2.fw-semibold
 
-                    small.text-muted
-                        = notificacion.createdAt.toLocaleString()
+                        if notificacion.mensaje.includes('valoró')
 
-                    br
+                            | ⭐ #{notificacion.mensaje}
 
-                    if notificacion.usuarioInteresadoId
+                        else if notificacion.mensaje.includes('comentó')
 
-                        a.btn.btn-sm.btn-primary.mt-2.me-2(
-                            href='/usuarios/' + notificacion.usuarioInteresadoId
-                        )
-                            | Ver perfil
+                            | 💬 #{notificacion.mensaje}
 
-                        a.btn.btn-sm.btn-warning.mt-2.me-2(
-                            href='/mensajes/chat/' + notificacion.usuarioInteresadoId
-                        )
-                            | Enviar mensaje
+                        else if notificacion.mensaje.includes('comenzó a seguirte')
 
-                    if !notificacion.leida
+                            | 👤 #{notificacion.mensaje}
 
-                        a.btn.btn-sm.btn-success.mt-2(
-                            href='/notificaciones/leida/' + notificacion.id
-                        )
-                            | Marcar como leída
+                        else if notificacion.mensaje.includes('interesa')
 
-                    else
+                            | ❤️ #{notificacion.mensaje}
 
-                        span.badge.bg-secondary.mt-2
-                            | Leída
+                        else
+
+                            = notificacion.mensaje
+
+                    .d-flex.justify-content-between.align-items-center.flex-wrap
+
+                        small.text-muted
+                            = notificacion.createdAt.toLocaleString()
+
+                        .mt-2
+
+                            if notificacion.usuarioInteresadoId
+
+                                a.btn.btn-sm.btn-primary.me-1(
+                                    href='/usuarios/' + notificacion.usuarioInteresadoId
+                                )
+                                    | Perfil
+
+                                a.btn.btn-sm.btn-warning.me-1(
+                                    href='/mensajes/chat/' + notificacion.usuarioInteresadoId
+                                )
+                                    | Mensaje
+
+                            if !notificacion.leida
+
+                                a.btn.btn-sm.btn-success(
+                                    href='/notificaciones/leida/' + notificacion.id
+                                )
+                                    | ✓ Leída
+
+                            else
+
+                                span.badge.bg-secondary
+                                    | Leída

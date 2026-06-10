@@ -264,3 +264,11 @@ img {
 
     border: 3px solid #dee2e6;
 }
+
+.card-body small {
+    font-size: 0.9rem;
+}
+
+.badge {
+    border-radius: 20px;
+}
