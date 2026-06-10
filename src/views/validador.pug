@@ -6,19 +6,45 @@ block content
 
     if publicaciones.length === 0
 
-        p No hay publicaciones pendientes.
+        .card
+
+            .card-body.text-center
+
+                h4.text-success
+                    | ✓ No hay publicaciones pendientes
+
+                p.mb-0
+                    | Todas las denuncias han sido resueltas.
 
     else
 
         each publicacion in publicaciones
 
+            -
+                const autor =
+                    usuarios.find(
+                        u => u.id === publicacion.usuarioId
+                    )
+
             .card.mb-3
 
                 .card-body
 
-                    h5.card-title= publicacion.titulo
+                    h4.card-title
+                        = publicacion.titulo
 
-                    p.card-text= publicacion.descripcion
+                    if autor
+
+                        p.text-muted.mb-2
+                            strong Autor:
+                            |  #{autor.nombre}
+
+                    if publicacion.descripcion
+
+                        p.card-text
+                            = publicacion.descripcion
+
+                    hr
 
                     a.btn.btn-success.me-2(
                         href='/validador/desestimar/' + publicacion.id
