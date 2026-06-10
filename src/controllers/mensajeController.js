@@ -32,13 +32,39 @@ const listarMensajes = async (req, res) => {
 
         });
 
+        const conversaciones = [];
+
+        const usuariosProcesados = new Set();
+
+        for (const mensaje of mensajes) {
+
+            const otroUsuarioId =
+                mensaje.remitenteId === req.session.usuarioId
+                    ? mensaje.destinatarioId
+                    : mensaje.remitenteId;
+
+            if (!usuariosProcesados.has(otroUsuarioId)) {
+
+                usuariosProcesados.add(
+                    otroUsuarioId
+                );
+
+                conversaciones.push({
+                    usuarioId: otroUsuarioId,
+                    ultimoMensaje: mensaje.texto
+                });
+
+            }
+
+        }
+
         const usuarios =
             await Usuario.findAll();
 
         res.render(
             'mensajes',
             {
-                mensajes,
+                conversaciones,
                 usuarios,
                 usuariosId:
                     Number(                 

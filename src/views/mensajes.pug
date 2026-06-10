@@ -4,51 +4,31 @@ block content
 
     h2 Conversaciones
 
-    each mensaje in mensajes
+    if conversaciones.length === 0
 
-        -
-            const remitente =
-                usuarios.find(
-                    u => u.id === mensaje.remitenteId
-                )
+        p No tienes conversaciones.
 
-        -
-            const destinatario =
-                usuarios.find(
-                    u => u.id === mensaje.destinatarioId
-                )
+    else
 
-        .card.mb-3
+        each conversacion in conversaciones
 
-            .card-body
-
-                p
-                    strong De:
-                    |  #{remitente ? remitente.nombre : 'Usuario'}
-
-                p
-                    strong Para:
-                    |  #{destinatario ? destinatario.nombre : 'Usuario'}
-
-                p= mensaje.texto
-
-                if mensaje.remitenteId !== usuarioId
-
-                    form(
-                        action='/mensajes/enviar/' + mensaje.remitenteId
-                        method='POST'
+            -
+                const usuario =
+                    usuarios.find(
+                        u => u.id === conversacion.usuarioId
                     )
 
-                        .mb-2
+            .card.mb-3
 
-                            textarea.form-control(
-                                name='texto'
-                                rows='2'
-                                placeholder='Responder mensaje'
-                                required
-                            )
+                .card-body
 
-                        button.btn.btn-primary.btn-sm(
-                            type='submit'
-                        )
-                            | Responder
+                    h5.card-title
+                        = usuario ? usuario.nombre : 'Usuario'
+
+                    p.text-muted
+                        = conversacion.ultimoMensaje
+
+                    a.btn.btn-primary(
+                        href='/mensajes/chat/' + conversacion.usuarioId
+                    )
+                        | Abrir conversación
