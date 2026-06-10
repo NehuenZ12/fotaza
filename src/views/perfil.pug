@@ -2,39 +2,52 @@ extends layouts/main
 
 block content
 
-    h2 Mi Perfil
+    h2.text-center.mb-4
+    | Mi Perfil
 
-    p
-        strong Nombre:
-        |  #{usuario.nombre}
+    .card.mb-4
 
-    p
-        strong Correo:
-        |  #{usuario.email}
+        .card-body.text-center
 
-    hr
+            h3.mb-3
+                = usuario.nombre
 
-    h4 Resumen
+            p.text-muted.mb-4
+                = usuario.email
 
-    p
-        strong Publicaciones:
-        |  #{publicaciones.length}
+            .row.text-center
 
-    p
-        strong Seguidores:
-        |  #{seguidores}
+                .col-md-3
 
-    p
-        strong Seguidos:
-        |  #{seguidos}
+                    h3.text-primary.mb-0
+                        = publicaciones.length
 
-    p
-        strong Colecciones:
-        |  #{colecciones}
+                    small.text-muted
+                        | Publicaciones
 
-    hr
+                .col-md-3
 
-    h4 Mis últimas publicaciones
+                    h3.text-primary.mb-0
+                        = seguidores
+
+                    small.text-muted
+                        | Seguidores
+
+                .col-md-3
+
+                    h3.text-primary.mb-0
+                        = seguidos
+
+                    small.text-muted
+                        | Seguidos
+
+                .col-md-3
+
+                    h3.text-primary.mb-0
+                        = colecciones
+
+                    small.text-muted
+                        | Colecciones
 
     if publicaciones.length === 0
 
@@ -56,13 +69,6 @@ block content
 
                 .card-body
 
-                    if imagenPublicacion
-
-                        img.img-thumbnail.mb-2(
-                            src='/uploads/' + imagenPublicacion.ruta
-                            style='max-width: 150px;'
-                        )
-
                     h6.card-title
                         = publicacion.titulo
 
@@ -70,6 +76,12 @@ block content
 
                         p.card-text
                             = publicacion.descripcion
+
+                    if imagenPublicacion
+
+                        img.publicacion-img.mb-3(
+                            src='/uploads/' + imagenPublicacion.ruta
+                        )
 
     a.btn.btn-danger.mt-3(
         href='/auth/logout'
