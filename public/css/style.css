@@ -145,6 +145,19 @@ body {
     font-weight: 500;
 }
 
+.btn img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.icono-boton {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
 /* ---------- IMÁGENES ---------- */
 
 img {
@@ -222,8 +235,3 @@ img {
     margin-bottom: 10px;
 }
 
-.btn img {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-}
