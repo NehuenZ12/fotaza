@@ -30,9 +30,9 @@ img {
 }
 
 .publicacion-img {
-    max-height: 800px;
+    max-height: 600px;
     width: auto;
-    max-width: 600%;
+    max-width: 400%;
     object-fit: cover;
     border-radius: 12px;
 }
@@ -160,4 +160,14 @@ img {
 
 .sidebar:hover ~ .main-content {
     margin-left: 260px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
+.main-content .container-fluid {
+    max-width: 900px;
+    width: 100%;
 }
