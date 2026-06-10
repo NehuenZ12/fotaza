@@ -1,5 +1,5 @@
 body {
-    background-color: #55687e;
+    background-color: #97b9e0;
 }
 
 /* ---------- NAVBAR ---------- */
@@ -237,4 +237,30 @@ img {
 
 .row.text-center h3 {
     font-weight: 700;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 10px;
+
+    border: 3px solid #dee2e6;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 15px;
+
+    border: 3px solid #dee2e6;
 }
