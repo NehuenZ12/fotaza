@@ -115,6 +115,16 @@ const publicacionesSeguidos = async (req, res) => {
 
         const imagenes = await Imagen.findAll();
         const usuarios = await Usuario.findAll();
+        const Comentario = require('../models/Comentario');
+
+        const comentarios =
+            await Comentario.findAll({
+
+                order: [
+                    ['id', 'DESC']
+                ]
+
+            });
 
         res.render(
             'publicacionesSeguidos',
@@ -122,7 +132,8 @@ const publicacionesSeguidos = async (req, res) => {
                 publicaciones:
                     publicacionesFiltradas,
                 imagenes,
-                usuarios
+                usuarios,
+                comentarios
             }
         );
 

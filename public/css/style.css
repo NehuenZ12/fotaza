@@ -280,4 +280,13 @@ img {
     border-radius: 12px;
 }
 
+.menu-validador {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+.menu-validador:hover {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffd54f !important;
+}
 

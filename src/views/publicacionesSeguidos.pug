@@ -66,7 +66,45 @@ block content
                             summary.btn.btn-outline-primary.btn-sm
                                 | 💬 Comentarios
 
-                            .mt-2
+                            .mt-3
 
-                                p.text-muted
-                                    | Próximamente comentarios aquí
+                                form(
+                                    action='/comentarios/crear/' + publicacion.id
+                                    method='POST'
+                                )
+
+                                    .mb-2
+
+                                        textarea.form-control(
+                                            name='texto'
+                                            rows='1'
+                                            placeholder='Escribe un comentario'
+                                            required
+                                        )
+
+                                    button.btn.btn-primary.btn-sm(
+                                        type='submit'
+                                    )
+                                        | Comentar
+
+                                hr
+
+                                h6 Comentarios
+
+                                each comentario in comentarios
+
+                                    if comentario.publicacionId === publicacion.id
+
+                                        -
+                                            const usuarioComentario =
+                                                usuarios.find(
+                                                    u => u.id === comentario.usuarioId
+                                                )
+
+                                        .border.rounded.p-2.mb-2.bg-light
+
+                                            p.mb-1
+
+                                                strong= usuarioComentario ? usuarioComentario.nombre : 'Usuario'
+
+                                            p.mb-0= comentario.texto
