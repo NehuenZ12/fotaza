@@ -24,6 +24,18 @@ block content
                                     publicacion.id
                             )
 
+                    -
+                        const autor =
+                            usuarios.find(
+                                u => u.id === publicacion.usuarioId
+                            )
+
+                    p.text-muted.mb-1
+
+                        strong 👤
+
+                        |  #{autor ? autor.nombre : 'Usuario'}
+
                     h5.card-title= publicacion.titulo
 
                     p.card-text= publicacion.descripcion

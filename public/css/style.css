@@ -273,3 +273,10 @@ img {
     border-radius: 20px;
 }
 
+.publicacion-seguido-img {
+    width: 500px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+

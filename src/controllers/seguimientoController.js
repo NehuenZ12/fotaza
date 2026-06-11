@@ -113,15 +113,16 @@ const publicacionesSeguidos = async (req, res) => {
 
             });
 
-        const imagenes =
-            await Imagen.findAll();
+        const imagenes = await Imagen.findAll();
+        const usuarios = await Usuario.findAll();
 
         res.render(
             'publicacionesSeguidos',
             {
                 publicaciones:
                     publicacionesFiltradas,
-                imagenes
+                imagenes,
+                usuarios
             }
         );
 
