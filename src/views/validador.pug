@@ -44,6 +44,20 @@ block content
                         p.card-text
                             = publicacion.descripcion
 
+                    -
+                        const imagen =
+                            imagenes.find(
+                                img =>
+                                    img.publicacionId === publicacion.id
+                            )
+
+                    if imagen
+
+                        img.publicacion-seguido-img.mb-3(
+                            src='/uploads/' + imagen.ruta
+                            alt='Imagen'
+                        )
+
                     hr
 
                     a.btn.btn-success.me-2(

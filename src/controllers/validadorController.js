@@ -17,12 +17,14 @@ const listarRevision = async (req, res) => {
             });
 
         const usuarios = await Usuario.findAll();
+        const imagenes = await Imagen.findAll();
 
         res.render(
             'validador',
             {
                 publicaciones,
-                usuarios
+                usuarios,
+                imagenes
             
             }
         );
