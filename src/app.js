@@ -66,6 +66,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', authRoutes);
+app.use(verificarSesion);
 app.use('/publicaciones', publicacionRoutes);
 app.use('/comentarios', comentarioRoutes);
 app.use('/valoraciones', valoracionRoutes);
