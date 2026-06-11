@@ -2,7 +2,11 @@ extends layouts/main
 
 block content
 
-    h2 Publicaciones
+    .welcome-banner.mb-4
+
+    h2.mb-1
+        | 👋 ¡Bienvenido de nuevo, #{usuarioNombre}!
+
 
     form.mb-3(
         action="/buscar"
