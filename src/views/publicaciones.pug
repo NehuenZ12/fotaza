@@ -250,91 +250,125 @@ block content
                                     details.mb-2
 
                                         summary.btn.btn-outline-danger.btn-sm
-                                            | 🚩 Reportar
+                                            |  Reportar
 
                                         form(
                                             action='/denuncias-comentarios/' + comentario.id
                                             method='POST'
                                         )
-                
-                                                    .mt-2
 
-                                                        select.form-select(
-                                                            name='motivo'
-                                                            required
-                                                        )
+                                            .mt-2
 
-                                                            option(value='')
-                                                                | Seleccione un motivo
+                                                select.form-select(
+                                                    name='motivo'
+                                                    required
+                                                )
 
-                                                            option(value='Insulto')
-                                                                | Insulto
+                                                    option(value='')
+                                                        | Seleccione un motivo
 
-                                                            option(value='Spam')
-                                                                | Spam
+                                                    option(value='Insulto')
+                                                        | Insulto
 
-                                                            option(value='Contenido ofensivo')
-                                                                | Contenido ofensivo
+                                                    option(value='Spam')
+                                                        | Spam
 
-                                                            option(value='Acoso')
-                                                                | Acoso
-                                                    
-                                                    .mt-2
+                                                    option(value='Contenido ofensivo')
+                                                        | Contenido ofensivo
 
-                                                        textarea.form-control(
-                                                            name='descripcion'
-                                                            rows='2'
-                                                            placeholder='Describa el motivo de la denuncia'
-                                                            required
-                                                        )   
+                                                    option(value='Acoso')
+                                                        | Acoso
 
-                                                    button.btn.btn-danger.btn-sm.mt-2(
-                                                        type='submit'
-                                                    )
-                                                        | Enviar denuncia                                           
+                                            .mt-2
 
-            hr
+                                                textarea.form-control(
+                                                    name='descripcion'
+                                                    rows='2'
+                                                    placeholder='Describa el motivo de la denuncia'
+                                                    required
+                                                )
 
-            if publicacion.usuarioId !== usuarioId
+                                            button.btn.btn-danger.btn-sm.mt-2(
+                                                type='submit'
+                                            )
+                                                | Enviar denuncia
 
-                .d-flex.align-items-end.gap-2.flex-wrap.mt-3
+                hr
+
+                details.mb-3
+
+                    summary.btn.btn-warning
+                        | 📚 Guardar en colección
 
                     form(
-                        action='/valoraciones/' + publicacion.id
+                        action='/colecciones/guardar/' + publicacion.id
                         method='POST'
                     )
 
-                        .d-flex.align-items-end.gap-2
+                        .mt-2
 
-                            div
-
-                                label.form-label.mb-1
-                                    | Valorar
-
-                                select.form-select.form-select-sm(
-                                    name='puntaje'
-                                    required
-                                )
-
-                                    option(value='1') 1
-                                    option(value='2') 2
-                                    option(value='3') 3
-                                    option(value='4') 4
-                                    option(value='5') 5
-
-                            button.btn.btn-warning.btn-sm(
-                                type='submit'
+                            select.form-select(
+                                name='coleccionId'
+                                required
                             )
-                                | Valorar
 
-                    a.btn.btn-info.btn-sm(
-                        href='/intereses/' + publicacion.id
-                    )
+                                option(value='')
+                                    | Seleccione colección
 
-                        img(
-                            src='/img/corazon.png'
-                            alt='Interés'
-                            class='icono-boton'
+                                each coleccion in colecciones
+
+                                    option(
+                                        value=coleccion.id
+                                    )
+                                        = coleccion.nombre
+
+                        button.btn.btn-warning.mt-2(
+                            type='submit'
+                        )
+                            | Guardar
+
+                hr
+
+                if publicacion.usuarioId !== usuarioId
+
+                    .d-flex.align-items-end.gap-2.flex-wrap.mt-3
+
+                        form(
+                            action='/valoraciones/' + publicacion.id
+                            method='POST'
                         )
 
-                        | Me interesa
+                            .d-flex.align-items-end.gap-2
+
+                                div
+
+                                    label.form-label.mb-1
+                                        | Valorar
+
+                                    select.form-select.form-select-sm(
+                                        name='puntaje'
+                                        required
+                                    )
+
+                                        option(value='1') 1
+                                        option(value='2') 2
+                                        option(value='3') 3
+                                        option(value='4') 4
+                                        option(value='5') 5
+
+                                button.btn.btn-warning.btn-sm(
+                                    type='submit'
+                                )
+                                    | Valorar
+
+                        a.btn.btn-info.btn-sm(
+                            href='/intereses/' + publicacion.id
+                        )
+
+                            img(
+                                src='/img/corazon.png'
+                                alt='Interés'
+                                class='icono-boton'
+                            )
+
+                            | Me interesa
