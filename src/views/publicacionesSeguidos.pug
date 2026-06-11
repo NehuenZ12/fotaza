@@ -30,7 +30,31 @@ block content
 
                     if imagen
 
-                        img.img-fluid.mb-3(
+                        img.publicacion-seguido-img.mb-3(
                             src='/uploads/' + imagen.ruta
                             alt='Imagen'
                         )
+
+                    .mt-3
+
+                        a.btn.btn-info.btn-sm.me-2(
+                            href='/intereses/' + publicacion.id
+                        )
+
+                            img(
+                                src='/img/corazon.png'
+                                alt='Interés'
+                                class='icono-boton'
+                            )
+
+                            | Me interesa
+
+                        details.d-inline-block
+
+                            summary.btn.btn-outline-primary.btn-sm
+                                | 💬 Comentarios
+
+                            .mt-2
+
+                                p.text-muted
+                                    | Próximamente comentarios aquí

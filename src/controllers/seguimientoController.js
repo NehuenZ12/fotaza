@@ -100,16 +100,18 @@ const publicacionesSeguidos = async (req, res) => {
                     seguimiento.seguidoId
             );
 
-        const publicaciones =
-            await Publicacion.findAll();
-
         const publicacionesFiltradas =
-            publicaciones.filter(
-                publicacion =>
-                    idsSeguidos.includes(
-                        publicacion.usuarioId
-                    )
-            );
+            await Publicacion.findAll({
+
+                where: {
+                    usuarioId: idsSeguidos
+                },
+
+                order: [
+                    ['id', 'DESC']
+                ]
+
+            });
 
         const imagenes =
             await Imagen.findAll();
