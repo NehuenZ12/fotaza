@@ -80,7 +80,9 @@ block content
                     if imagenPublicacion
 
                         img.publicacion-img.mb-3(
-                            src='/uploads/' + imagenPublicacion.ruta
+                            src=imagenPublicacion.ruta.startsWith('http')
+                                ? imagenPublicacion.ruta
+                                : '/uploads/' + imagenPublicacion.ruta
                         )
 
     a.btn.btn-danger.mt-3(
