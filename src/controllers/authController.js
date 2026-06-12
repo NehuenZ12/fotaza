@@ -66,11 +66,7 @@ const registrarUsuario = async (req, res) => {
             password: passwordEncriptada
         });
 
-        req.session.usuarioId = usuario.id;
-        req.session.usuarioNombre = usuario.nombre;
-        req.session.usuarioRol = usuario.rol;
-
-        res.redirect('/publicaciones');
+        res.send('Usuario registrado correctamente');
 
     } catch (error) {
         console.error(error);
