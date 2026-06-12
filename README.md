@@ -15,6 +15,11 @@ CLAVE:    12345
 
 
 
+RUTAS PRINCIPALES: 
+/auth/login
+/auth/register
+/publicaciones
+
 Fotaza es una aplicación web desarrollada con Node.js, Express, Sequelize y MySQL que permite a los usuarios compartir publicaciones con imágenes, comentar, valorar contenido, seguir otros usuarios, enviar mensajes privados y gestionar colecciones personales.
 
 Además, el sistema cuenta con un rol de validador encargado de revisar publicaciones denunciadas por los usuarios.
