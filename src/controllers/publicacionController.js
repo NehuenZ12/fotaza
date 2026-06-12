@@ -4,6 +4,7 @@ const Etiqueta = require('../models/Etiqueta');
 const PublicacionEtiqueta = require('../models/PublicacionEtiqueta');
 const Coleccion = require('../models/Coleccion');
 const Usuario = require('../models/Usuario');
+const cloudinary = require('../config/cloudinary');
 
 const mostrarFormulario = (req, res) => {
 
