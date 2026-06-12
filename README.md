@@ -10,8 +10,8 @@ CLAVE:    123456
 USUARIO:  melisa@test.com
 CLAVE:    melisa123
 
-USUARIO:  javi@gmail.com
-CLAVE:    javier123
+USUARIO:  nehuen@test.com
+CLAVE:    12345
 
 
 
