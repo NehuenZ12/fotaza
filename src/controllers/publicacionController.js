@@ -6,6 +6,9 @@ const Coleccion = require('../models/Coleccion');
 const Usuario = require('../models/Usuario');
 const cloudinary = require('../config/cloudinary');
 
+const path = require('path');
+const fs = require('fs-extra');
+
 const mostrarFormulario = (req, res) => {
 
     res.render('crearPublicacion');
@@ -24,11 +27,33 @@ const crearPublicacion = async (req, res) => {
 
         });
 
-    for (const archivo of req.files) {
+for (const archivo of req.files) {
 
-        await Imagen.create({
+    const rutaArchivo = path.join(
+        process.cwd(),
+        'public',
+        'uploads',
+        archivo.filename
+    );
 
-        ruta: archivo.filename,
+    console.log(
+        'Archivo encontrado:',
+        rutaArchivo
+    );
+
+    const resultadoCloudinary =
+        await cloudinary.uploader.upload(
+            rutaArchivo
+        );
+
+    console.log(
+        'URL Cloudinary:',
+        resultadoCloudinary.secure_url
+    );
+
+    await Imagen.create({
+
+        ruta: resultadoCloudinary.secure_url,
         publicacionId: publicacion.id,
         licencia: req.body.licencia,
         marcaagua: req.body.marcaAgua
